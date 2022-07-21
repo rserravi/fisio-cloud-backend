@@ -17,10 +17,11 @@ const setJWT = (key, value) =>{
 }
  
 const getJWT = (key) =>{
-   return new Promise((resolve, reject)=>{
+   return new Promise(async(resolve, reject)=>{
  
        try {
-           client.get("key", (err, res)=>{
+           await client.connect();
+           client.get(key, (err, res)=>{
                if(err) reject(err)
                resolve(res)
            });

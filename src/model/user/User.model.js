@@ -25,6 +25,24 @@ const getUserbyEmail = email =>{
    });
 };
 
+const getUserbyId = userId =>{
+   return new Promise((resolve,reject)=>{
+       if((!userId)) return false;
+       try{
+           UserSchema.findOne({userId}, (error, data)=>{
+           if(error){
+               reject(error);
+           }
+           resolve(data);
+           }
+       ).clone();
+       } catch (error) {
+           reject(error);
+       }
+   });
+};
+
+
 const storeUserRefreshJWT = (_id, token) => {
    console.log(_id);
    return new Promise((resolve, reject)=>{
@@ -50,5 +68,6 @@ const storeUserRefreshJWT = (_id, token) => {
 module.exports = {
    insertUser,
    getUserbyEmail,
+   getUserbyId,
    storeUserRefreshJWT,
 };

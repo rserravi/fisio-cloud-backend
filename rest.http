@@ -37,3 +37,7 @@ Content-Type: application/json
    "email": "rubotic1@gmail.com",
    "password": "password1234"
 }
+
+### Get a user profile endpoint
+GET http://localhost:3001/v1/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzOTY4OTksImV4cCI6MTY1ODM5Nzc5OX0.O9eWPOBhOjfTdBYmtzyiUSdKzXm_HOM5UV35CoGd83Y

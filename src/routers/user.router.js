@@ -2,8 +2,10 @@ const express = require("express");
 const req = require("express/lib/request");
 const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
-const { insertUser, getUserbyEmail } = require("../model/user/User.model");
+const { insertUser, getUserbyEmail, getUserbyId } = require("../model/user/User.model");
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
+const { userAuthorization} = require("../middleware/authorization.middleware");
+
 const router = express.Router();
  
  
@@ -11,6 +13,14 @@ router.all("/", (req, res, next) =>{
    //res.json({message: "return form user router"});
    next();
 });
+
+//Get user profile router
+router.get("/",userAuthorization, async(req,res)=>{
+    const _id = req.userId;
+    const userProf = await getUserbyId(_id);
+    res.json ({user: userProf});
+ })
+ 
 
 router.post("/", async(req, res) => {
     const { firstname,
