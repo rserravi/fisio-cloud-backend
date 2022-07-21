@@ -53,3 +53,13 @@ Content-Type: application/json
 {
    "email": "rubotic1@gmail.com"
 }
+
+### Update new password endpoint
+PATCH http://localhost:3001/v1/user/reset-password
+Content-Type: application/json
+ 
+{
+   "email": "rubotic1@gmail.com",
+   "pin": 106062,
+   "newPassword": "password2"
+}

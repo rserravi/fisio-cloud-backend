@@ -2,10 +2,10 @@ const express = require("express");
 const req = require("express/lib/request");
 const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
-const { insertUser, getUserbyEmail, getUserbyId } = require("../model/user/User.model");
+const { insertUser, getUserbyEmail, getUserbyId, updatePassword } = require("../model/user/User.model");
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const { userAuthorization} = require("../middleware/authorization.middleware");
-const { setPasswordResetPin } = require("../model/RestPin/RestPin.model")
+const { setPasswordResetPin, getPinbyEmailPin, deletePin } = require("../model/RestPin/RestPin.model")
 const { emailProcessor } = require("../helpers/email.helpers")
 
 const router = express.Router();
@@ -164,6 +164,41 @@ router.post("/login", async(req,res) =>{
     res.json({status: "error", message:"If the email exists in our databes, the password reset pin will be send shortly"});
 });
 
+//Update password in DB
+router.patch("/reset-password", async (req, res)=>{
+    // 1- receive email, pin and new password
+    const {email, pin, newPassword} = req.body;
+    // 2- validate pin
+    const getPin = await getPinbyEmailPin(email,pin);
+    if (getPin._id){
+        const dbDate = getPin.addedAt;
+        const expiresIn = 1
+        let expDate = dbDate.setDate(dbDate.getDate() + expiresIn);
+        const today = new Date();
+        if (today > expDate){
+            return res.json({status: "error", message: "Invalid or expired pin"});
+        }
+  
+        //3- encrypt new password
+        const hashedPass = await hashPassword(newPassword);
+        console.log( newPassword, + " "+ hashedPass);
+
+        //4- update password in DB
+        const user = await updatePassword(email,hashedPass);
+        if (user._id) {
+            // 5- send email notification
+            const result = await emailProcessor(email, "", "password update success");
+             if (result && result.messageId){
+                res.json({status: "success", message:"Confirmation email sent. Check your inbox"});
+             }
+            return res.json({status: "success", message:"Your password has been updated"})
+        }
+        //6- delete pins from database
+        deletePin(email,pin);
+        return res.json({status: "success", message:"Your password has been updated"})
+    }  
+    res.json({status: "error", message:"Unable to update your password. Please, try again later."});
+ }); 
  
 module.exports = router;
 
