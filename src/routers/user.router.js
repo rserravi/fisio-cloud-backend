@@ -1,8 +1,9 @@
-const e = require("express");
 const express = require("express");
-const { crossOriginResourcePolicy } = require("helmet");
+const req = require("express/lib/request");
+const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
 const { insertUser, getUserbyEmail } = require("../model/user/User.model");
+const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const router = express.Router();
  
  
@@ -64,7 +65,9 @@ router.post("/", async(req, res) => {
             socialuser1,
             socialuser2,
             socialuser3,
-            password: hashedPass
+            password: hashedPass,
+            createAccessJWT,
+            createRefreshJWT
         }
         const result = await insertUser(newUserObj);
         console.log("RESULT",result);
@@ -89,18 +92,32 @@ router.post("/login", async(req,res) =>{
         res.json({status:"error", message:"invalid form submission"})
     }
 
-    //get user with email from db
+   
     try {
+         //get user with email from db
         const user = await getUserbyEmail(email);
         console.log(user);
         const passFromDb = user && user.id ? user.password : null;
+
         if (!passFromDb) return res.json({status: "error", message:"Invalid email or password"})
+       
         const result = await comparePassword(password, passFromDb);
         console.log(result);
-        if (result){
-            return res.json({status:"success", message: "Login successful"});
+        
+        if (!result){
+            return res.json({status:"unauthorized", message:"Incorrect Password"})
         }
-        return res.json({status:"unauthorized", message:"Incorrect Password"})
+       
+        const accessJWT = await createAccessJWT(user.email);
+        const refreshJWT = await createRefreshJWT(user.email);
+        return res.json({
+            status:"success",
+            message: "Login Successful",
+            accessJWT,
+            refreshJWT,
+        });
+ 
+
     } catch (error) {
         console.log(error)
     }
