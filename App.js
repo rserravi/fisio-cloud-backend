@@ -45,9 +45,12 @@ app.use(bodyParser.json());
 
 //Load Routers
 const userRouter = require("./src/routers/user.router");
+const tokensRouter = require("./src/routers/tokensRouter.router");
+
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
+app.use("/v1/tokens", tokensRouter);
 
 //Error handler
 const handleError = require("./src/utils/errorHandler");

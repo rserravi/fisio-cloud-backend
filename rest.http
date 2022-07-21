@@ -40,4 +40,16 @@ Content-Type: application/json
 
 ### Get a user profile endpoint
 GET http://localhost:3001/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTgzOTY4OTksImV4cCI6MTY1ODM5Nzc5OX0.O9eWPOBhOjfTdBYmtzyiUSdKzXm_HOM5UV35CoGd83Y
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODQwMDk3NCwiZXhwIjoxNjU4NDAxODc0fQ.F-9LdsTF15dhMkXuXJXyvDw3MMQs4Caq0_N2eEznKPk
+
+### Get Refresh Token
+GET http://localhost:3001/v1/tokens
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoicnVib3RpYzFAZ21haWwuY29tIiwiaWF0IjoxNjU4NDAwOTc0LCJleHAiOjE2NjA5OTI5NzR9.kiSj6MUXPzfCpE7XEZ2d64JeFqo46eL69hC4vdJHHLo
+
+### Password reset endpoints
+POST http://localhost:3001/v1/user/reset-password
+Content-Type: application/json
+ 
+{
+   "email": "rubotic1@gmail.com"
+}

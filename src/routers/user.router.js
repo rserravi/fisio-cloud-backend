@@ -5,6 +5,8 @@ const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
 const { insertUser, getUserbyEmail, getUserbyId } = require("../model/user/User.model");
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const { userAuthorization} = require("../middleware/authorization.middleware");
+const { setPasswordResetPin } = require("../model/RestPin/RestPin.model")
+const { emailProcessor } = require("../helpers/email.helpers")
 
 const router = express.Router();
  
@@ -117,9 +119,11 @@ router.post("/login", async(req,res) =>{
         if (!result){
             return res.json({status:"unauthorized", message:"Incorrect Password"})
         }
+
+        console.log("HAY USER EMAILWORK", user.emailwork, email)
        
-        const accessJWT = await createAccessJWT(user.email, `${user._id}`); //NOTE: user._id is converted to string, to avoid passing as object
-        const refreshJWT = await createRefreshJWT(user.email,`${user._id}`);
+        const accessJWT = await createAccessJWT(email, `${user._id}`); //NOTE: user._id is converted to string, to avoid passing as object
+        const refreshJWT = await createRefreshJWT(email,`${user._id}`);
         return res.json({
             status:"success",
             message: "Login Successful",
@@ -132,7 +136,34 @@ router.post("/login", async(req,res) =>{
         console.log(error)
     }
  });
- 
+
+//Reset Password
+ router.post("/reset-password", async (req, res)=>{
+    //A - Create and send password reset pin number
+    //1- receive email
+    const {email} = req.body;
+
+    //2- check user exists for the email
+    const user = await getUserbyEmail(email);
+
+    if (user && user._id){
+        //3- create unique 6 digit pin
+        //4- save pin and email in database        
+        const setPin = await setPasswordResetPin(email);
+        //5 - email the pìn
+        const result = await emailProcessor(email, setPin.pin);
+
+        if (result && result.messageId){
+            res.json({status: "success", message:"If the email exists in our databes, the password reset pin will be send shortly"});
+        }
+
+        return res.json(setPin);
+    }
+    res.json({status: "error", message:"unable to process your request at the moment - Try again later"});
+
+    res.json({status: "error", message:"If the email exists in our databes, the password reset pin will be send shortly"});
+});
+
  
 module.exports = router;
 
