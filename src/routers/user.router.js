@@ -6,7 +6,8 @@ const { insertUser, getUserbyEmail, getUserbyId, updatePassword } = require("../
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const { userAuthorization} = require("../middleware/authorization.middleware");
 const { setPasswordResetPin, getPinbyEmailPin, deletePin } = require("../model/RestPin/RestPin.model")
-const { emailProcessor } = require("../helpers/email.helpers")
+const { emailProcessor } = require("../helpers/email.helpers");
+const { resetPassReqValidation, updatePassValidation } = require("../middleware/formValidation.middleware");
 
 const router = express.Router();
  
@@ -138,7 +139,7 @@ router.post("/login", async(req,res) =>{
  });
 
 //Reset Password
- router.post("/reset-password", async (req, res)=>{
+ router.post("/reset-password", resetPassReqValidation, async (req, res)=>{
     //A - Create and send password reset pin number
     //1- receive email
     const {email} = req.body;
@@ -165,7 +166,7 @@ router.post("/login", async(req,res) =>{
 });
 
 //Update password in DB
-router.patch("/reset-password", async (req, res)=>{
+router.patch("/reset-password", updatePassValidation, async (req, res)=>{
     // 1- receive email, pin and new password
     const {email, pin, newPassword} = req.body;
     // 2- validate pin
@@ -182,7 +183,6 @@ router.patch("/reset-password", async (req, res)=>{
         //3- encrypt new password
         const hashedPass = await hashPassword(newPassword);
         console.log( newPassword, + " "+ hashedPass);
-
         //4- update password in DB
         const user = await updatePassword(email,hashedPass);
         if (user._id) {
@@ -191,14 +191,14 @@ router.patch("/reset-password", async (req, res)=>{
              if (result && result.messageId){
                 res.json({status: "success", message:"Confirmation email sent. Check your inbox"});
              }
+             //6- delete pins from database
+            deletePin(email,pin);
             return res.json({status: "success", message:"Your password has been updated"})
         }
-        //6- delete pins from database
-        deletePin(email,pin);
-        return res.json({status: "success", message:"Your password has been updated"})
     }  
     res.json({status: "error", message:"Unable to update your password. Please, try again later."});
- }); 
+ });
+ 
  
 module.exports = router;
 

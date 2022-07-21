@@ -60,6 +60,6 @@ Content-Type: application/json
  
 {
    "email": "rubotic1@gmail.com",
-   "pin": 106062,
+   "pin": "776981",
    "newPassword": "password2"
 }
