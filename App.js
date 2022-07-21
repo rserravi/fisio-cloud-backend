@@ -5,10 +5,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3001;
  
 //API SECURITY
-app.use(helmet());
+//app.use(helmet());
  
 //HANDLE CORS ERROR
 app.use(cors());

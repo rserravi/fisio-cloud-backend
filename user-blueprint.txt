@@ -1,0 +1,27 @@
+{
+    "firstname":"Rubén",
+    "lastname":"Serra i Viusà",
+    "gender":"male",
+    "birhdate":"1974-09-15T03:00:00.000Z",
+    "locales":"ca-CA",
+    "role":"admin",
+    "image":"/images/RubenSerra.jpg",
+    "emailhome":"rserravi@gmail.com",
+    "emailwork": "rubotic1@gmail.com",
+    "streetaddress": "Costa Rica n5",
+    "cityaddress": "Las Gabias",
+    "stateaddress": "Granada",
+    "postalcodeaddress": "18010",
+    "countryaddress":"Spain",
+    "phonehome": "+34722303012",
+    "phonework": "+34722303012",
+    "whatsapp":  "+34722303012",
+    "socialmedia1":"Facebook",
+    "socialmedia2":"Twitter",
+    "socialmedia3":"Instagram",
+    "socialuser1":"@rserravi",
+    "socialuser2":"@rserravi",
+    "socialuser3":"@rserravi",
+    "password":"password1234"
+}
+
