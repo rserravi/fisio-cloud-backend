@@ -53,12 +53,17 @@ const getJWT = (key) =>{
 }
 
 const deleteJWT = async key => {
-    try {
-        await checkRedis();
-        client.del(key)
-    } catch (error) {
-        console.log(error);
-    }
+    return new Promise(async(resolve, reject)=>{
+        try {
+            await checkRedis();
+            client.del(key, (err, res)=>{
+                if(err) reject(err)
+                resolve(res)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    })
  }
  
  

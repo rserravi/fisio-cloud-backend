@@ -35,7 +35,7 @@ Content-Type: application/json
  
 {
    "email": "rubotic1@gmail.com",
-   "password": "password1234"
+   "password": "password2"
 }
 
 ### Get a user profile endpoint
@@ -63,3 +63,7 @@ Content-Type: application/json
    "pin": "776981",
    "newPassword": "password2"
 }
+
+### User Logout endopoint
+DELETE http://localhost:3001/v1/user/logout
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODQ3NDUyMiwiZXhwIjoxNjU4NDc1NDIyfQ.-CinF2ScojResh-R3uxshu9Cqc6x0pRGfBiz3CHTecw
