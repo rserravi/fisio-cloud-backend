@@ -18,6 +18,10 @@ const UserSchema = mongoose.Schema ({
         type: Date,
         maxlenght: 50,
     },
+    dni: {
+        type: String,
+        maxLenght: 12,
+    },
     locales: {
         type: String,
         maxlenght: 6,
@@ -100,6 +104,10 @@ const UserSchema = mongoose.Schema ({
         minlenght: 8,
         maxlenght: 100,
         required: true
+    },
+    lastlogin: {
+        type: Date,
+        maxlenght: 50,
     },
     refreshJWT: {
         token:{

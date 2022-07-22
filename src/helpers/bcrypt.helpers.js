@@ -9,6 +9,7 @@ const hashPassword = plainPassword => {
 
 const comparePassword = (plainPassword, passFromDb)=>{
    return new Promise((resolve,reject)=>{
+      console.log("PASSWORD", plainPassword)
        bcrypt.compare(plainPassword, passFromDb, function(err, result){
            if(err) reject (err);
            resolve (result);

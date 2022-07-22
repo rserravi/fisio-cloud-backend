@@ -30,8 +30,9 @@ router.post("/", async(req, res) => {
     const { firstname,
             lastname,
             gender,
-            birhdate,
+            birthdate,
             locales,
+            dni,
             role,
             image,
             emailhome,
@@ -50,7 +51,8 @@ router.post("/", async(req, res) => {
             socialuser1,
             socialuser2,
             socialuser3,
-            password
+            password,
+            lastlogin
          } = req.body;
     try {
         //hash password
@@ -59,8 +61,9 @@ router.post("/", async(req, res) => {
             firstname,
             lastname,
             gender,
-            birhdate,
+            birthdate: new Date(birthdate),
             locales,
+            dni,
             role,
             image,
             emailhome,
@@ -79,6 +82,7 @@ router.post("/", async(req, res) => {
             socialuser1,
             socialuser2,
             socialuser3,
+            lastlogin : new Date(),
             password: hashedPass,
             createAccessJWT,
             createRefreshJWT
@@ -131,6 +135,7 @@ router.post("/login", async(req,res) =>{
             message: "Login Successful",
             accessJWT,
             refreshJWT,
+            user,
         });
  
 

@@ -6,8 +6,9 @@ Content-Type: application/json
     "firstname":"Rubén",
     "lastname":"Serra i Viusà",
     "gender":"male",
-    "birhdate":"1974-09-15T03:00:00.000Z",
+    "birthdate":"1974-09-15T03:00:00.000Z",
     "locales":"ca-CA",
+    "dni": "43527459G",
     "role":"admin",
     "image":"/images/RubenSerra.jpg",
     "emailhome":"rserravi@gmail.com",
@@ -26,7 +27,8 @@ Content-Type: application/json
     "socialuser1":"@rserravi",
     "socialuser2":"@rserravi",
     "socialuser3":"@rserravi",
-    "password":"password1234"
+    "password":"password1234",
+    "lastlogin": ""
 }
 
 ### User sign in endpoint
