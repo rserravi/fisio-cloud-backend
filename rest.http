@@ -69,3 +69,39 @@ Content-Type: application/json
 ### User Logout endopoint
 DELETE http://localhost:3001/v1/user/logout
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODQ3NDUyMiwiZXhwIjoxNjU4NDc1NDIyfQ.-CinF2ScojResh-R3uxshu9Cqc6x0pRGfBiz3CHTecw
+
+### Create customer endpoint
+POST http://localhost:3001/v1/customer 
+Content-Type: application/json
+
+{
+      "promotedToCustomer":"2019-04-02T17:30:00.000Z",
+      "firstname": "Juanjo",
+      "lastname": "Rubio Burguillos",
+      "dni":"43444444G",
+      "birthdate": "1974-04-04T17:30:00.000Z",
+      "image": "juanjorubio.jpg",
+      "gender": "male",
+      "inbound": "customer",
+      "emailhome":"jrubio@telecom.es",
+      "emailwork":"juanr@telefonica.es",
+      "streetaddress": "21 E 2nd St",
+      "cityaddress": "New York",
+      "stateaddress": "NY",
+      "postalcodeaddress": "10003",
+      "countryaddress":"United States",
+      "phonehome":"212 555-1234",
+      "phonework":"+34 722303012",   
+      "whatsapp": "+34 722303012",
+      "socialmedia1":"Facebook",
+      "socialmedia2":"Twitter",
+      "socialmedia3":"Reddit",
+      "socialuser1": "@juanjo.rubio.7798",
+      "socialuser2": "@TeresaRodr_",
+      "socialuser3": "@TeresaRo12",
+      "releaseForm":{
+               "file":"",
+               "generated":false,
+               "signed":false
+      }
+}

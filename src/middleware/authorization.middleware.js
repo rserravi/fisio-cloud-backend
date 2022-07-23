@@ -6,7 +6,6 @@ const userAuthorization = async(req, res, next) => {
     console.log ("AUTH",authorization);
     //1. verify is jwt is valid
     const decoded = await verifyAccessJWT(authorization);
-    console.log("ESTO ES DECODED",decoded)
     if(decoded){
         //2. check if jwt exist in redis
         const userId = await getJWT(authorization);
