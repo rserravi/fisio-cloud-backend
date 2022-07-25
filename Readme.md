@@ -23,6 +23,8 @@ All the user API router follows '/v1/user/'
 | 2     | '/v1/user/reset-password         | POST  | DONE     | No         | Verify email and email pin to reset the password |
 | 3     | '/v1/user/reset-password         | PATCH | DONE     | No         | Replace with new password.                      |
 | 4     | '/v1/user/{id}                   | GET   | DONE     | Yes        | Get users info                                   |
+| 5     | '/v1/user/                     | POST  | DONE     | Yes        | Create new user
+| 6     | '/v1/user/list                    | GET  | DONE     | Yes        | Get all users list
  
 ### Tokens API resources
  
@@ -33,11 +35,28 @@ All the Tokens API router follows '/v1/tokens'
 | 1     | '/v1/tokens'                     | GET   | DONE     |no          | Get a fresh access JWT              |
 
 ### Customer API resources
+All the customer API router follows '/v1/customer/'
+
  
 | #     | Routers                          | Verbs | Progress | Is Private | Description                                       |
 | ----- | -------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
-| 1     | '/v1/customer'                 | GET    | TODO     |Yes         | Get All customers         |
-| 2     | '/v1/customer/{custoId}'       | GET    | TODO     |Yes         | Get a custoId customer  
+| 1     | '/v1/customer'                 | GET    | DONE     |Yes         | Get All customers         |
+| 2     | '/v1/customer/{_custoId}'       | GET    | DONE     |Yes         | Get a custoId customer  
 | 3     | '/v1/customer'                 | POST   | DONE     |Yes         | Create a new customer with no appo, comm, hist 
-| 4     | '/v1/custome/{custoId}'        | DELETE | TODO     |Yes         | Delete a customer custoId
-| 5     | '/v1/custome/{custoId}'        | PUT    | TODO     |Yes         | Update customer data 
+| 4     | '/v1/customer/{_custoId}'        | DELETE | DONE     |Yes         | Delete a customer custoId
+| 5     | '/v1/customer/{_custoId}'        | PUT    | TODO     |Yes         | Update customer data 
+| 6     | '/v1/customer/{_custoId}/phone   | GET    | TODO     |Yes         | Get customer phone from ID
+| 7     | '/v1/customer/{_custoId}/whastsapp' | GET    | TODO     |Yes         | Get customer whatsapp from ID
+| 8     | '/v1/customer/{_custoId}/mail' | GET    | TODO     |Yes         | Get customer mail from ID
+| 9     | '/v1/customer/{_custoId}/name' | GET    | TODO     |Yes         | Get customer name from ID
+
+
+### Setup Language API resources
+All the customer API router follows '/v1/lang/'
+
+ 
+| #     | Routers                          | Verbs | Progress | Is Private | Description                                       |
+| ----- | -------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/lang'                       | GET    | DONE     |Yes         | Get All languajes         |
+| 2     | '/v1/lang'                       | POST    | DONE     |Yes         | Add Languaje to DataBase         |
+

@@ -4,8 +4,8 @@ const insertUser = userObj => {
    return new Promise((resolve, reject)=>{
        UserSchema(userObj)
        .save()
-       .then(data => resolve(data))
-       .catch(error => reject(error))
+       .then(data => {console.log("sin error");resolve(data)})
+       .catch(error => {console.log(error);reject(error)})
    })
 };
 
@@ -83,6 +83,20 @@ const updatePassword = (email, newHashedPass) =>{
         }
     })
  }
+
+ const getAllUsers = () =>{
+    return new Promise((resolve,reject)=>{
+        try {
+            UserSchema
+            .find()           
+            .then((data)=>resolve(data))
+            .catch((error)=> reject(error));
+        } catch (error) {
+            console.log("ERROR EN GET ALL USERS", error)
+            reject(error);
+        }
+    });
+}
  
 
  
@@ -92,4 +106,5 @@ module.exports = {
    getUserbyId,
    storeUserRefreshJWT,
    updatePassword,
+   getAllUsers
 };

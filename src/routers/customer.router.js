@@ -1,5 +1,6 @@
 const express = require("express");
-const { insertCustomer } = require("../model/customer/Customer.model");
+const { userAuthorization } = require("../middleware/authorization.middleware");
+const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer } = require("../model/customer/Customer.model");
 const router = express.Router();
  
 router.all("/", (req, res, next) =>{
@@ -88,6 +89,43 @@ router.post("/", async (req,res)=>{
     }
    
  })
+
+ router.get("/", userAuthorization, async (req,res)=>{
+    try {
+        const result = await getAllCustomers();
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+ 
+ })
+
+ // Get a specific customer
+router.get("/:_custoId", userAuthorization, async (req,res)=>{
+    try {
+        const {_custoId} = req.params;
+        console.log("PARAMS",_custoId)
+        const result = await getCustomerById(_custoId);
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+ });
+ 
+// Delete a customer
+router.delete("/:_id", userAuthorization, async (req,res)=>{
+    try {
+        const {_id} = req.params;
+        const result = await deleteCustomer({_id});
+        console.log(result);
+        return res.json({status:"success", message:"ticket deleted"});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+ });
  
  
 module.exports = router;

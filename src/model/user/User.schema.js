@@ -1,5 +1,8 @@
 const mongoose = require("mongoose")
 const UserSchema = mongoose.Schema ({
+    id:{
+        type: mongoose.Schema.Types.ObjectId
+    },
     firstname: {
         type: String,
         maxlenght: 50,

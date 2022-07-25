@@ -47,12 +47,14 @@ app.use(bodyParser.json());
 const userRouter = require("./src/routers/user.router");
 const tokensRouter = require("./src/routers/tokensRouter.router");
 const customerRouter = require("./src/routers/customer.router");
+const languageRouter = require("./src/routers/languages.router")
 
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
 app.use("/v1/tokens", tokensRouter);
 app.use("/v1/customer", customerRouter);
+app.use("/v1/lang", languageRouter);
 
 //Error handler
 const handleError = require("./src/utils/errorHandler");

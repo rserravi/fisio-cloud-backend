@@ -2,7 +2,7 @@ const express = require("express");
 const req = require("express/lib/request");
 const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
-const { insertUser, getUserbyEmail, getUserbyId, updatePassword, storeUserRefreshJWT } = require("../model/user/User.model");
+const { insertUser, getUserbyEmail, getUserbyId, updatePassword, storeUserRefreshJWT, getAllUsers } = require("../model/user/User.model");
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const { userAuthorization} = require("../middleware/authorization.middleware");
 const { setPasswordResetPin, getPinbyEmailPin, deletePin } = require("../model/RestPin/RestPin.model")
@@ -27,11 +27,12 @@ router.get("/",userAuthorization, async(req,res)=>{
  
 
 router.post("/", async(req, res) => {
+    console.log(req.body)
     const { firstname,
             lastname,
             gender,
             birthdate,
-            locales,
+            language,
             dni,
             role,
             image,
@@ -52,17 +53,16 @@ router.post("/", async(req, res) => {
             socialuser2,
             socialuser3,
             password,
-            lastlogin
          } = req.body;
     try {
         //hash password
-        const hashedPass = await hashPassword(password);
+        hashedPass = await hashPassword(password);
         const newUserObj = {
             firstname,
             lastname,
             gender,
             birthdate: new Date(birthdate),
-            locales,
+            locales:language,
             dni,
             role,
             image,
@@ -87,12 +87,14 @@ router.post("/", async(req, res) => {
             createAccessJWT,
             createRefreshJWT
         }
+        console.log(newUserObj);
         const result = await insertUser(newUserObj);
         console.log("RESULT",result);
         res.json({message: "New User Created", result})
     } catch (err) {
         if (err.code===11000){
-            res.json({message: "Email duplicado Prueba con otro email", err})
+            res.json({message: "Duplicated email. Try another one", err})
+            console.log(err)
         }
         else{
             res.json({message: "Error en insertUser or user.router", err})
@@ -114,8 +116,7 @@ router.post("/login", async(req,res) =>{
     try {
          //get user with email from db
         const user = await getUserbyEmail(email);
-        console.log(user);
-        const passFromDb = user && user.id ? user.password : null;
+        const passFromDb = user && user._id ? user.password : null;
 
         if (!passFromDb) return res.json({status: "error", message:"Invalid email or password"})
        
@@ -222,6 +223,16 @@ router.delete("/logout", userAuthorization, async(req,res)=>{
   
  })
  
+ //Get all users
+ router.get("/list", userAuthorization, async(req, res)=>{
+    try {
+        const result = await getAllUsers();
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+ })
  
  
 module.exports = router;

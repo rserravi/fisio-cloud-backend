@@ -66,7 +66,7 @@ Content-Type: application/json
    "newPassword": "password2"
 }
 
-### User Logout endopoint
+### User Logout endpoint
 DELETE http://localhost:3001/v1/user/logout
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODQ3NDUyMiwiZXhwIjoxNjU4NDc1NDIyfQ.-CinF2ScojResh-R3uxshu9Cqc6x0pRGfBiz3CHTecw
 
@@ -105,3 +105,20 @@ Content-Type: application/json
                "signed":false
       }
 }
+
+### Get all customers endpoint
+GET http://localhost:3001/v1/customer
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODU4OTM0MywiZXhwIjoxNjU4NTkwMjQzfQ.7yfKuTTRCiP7nkZ-unzXEWi830ofYCu8yNrRidTDJlw
+
+### Add language endpoint
+POST http://localhost:3001/v1/lang
+Content-Type: application/json
+
+{
+   "name":"English",
+   "language":"en-EN"
+}
+
+### Get all languajes endpoint
+GET http://localhost:3001/v1/lang
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODc0NDIzMiwiZXhwIjoxNjU4NzQ1MTMyfQ.1E4l3vrcBlHxRlkT3Y1CSaf6MvDilZL8T_Sj0A712TQ
