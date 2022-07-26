@@ -13,7 +13,7 @@ const getUserbyEmail = email =>{
    return new Promise((resolve,reject)=>{
        if((!email)) return false;
        try{
-           UserSchema.findOne({email}, (error, data)=>{
+           UserSchema.findOne({"emailwork":email}, (error, data)=>{
            if(error){
                resolve(error);
            }
@@ -29,7 +29,7 @@ const getUserbyId = userId =>{
    return new Promise((resolve,reject)=>{
        if((!userId)) return false;
        try{
-           UserSchema.findOne({userId}, (error, data)=>{
+           UserSchema.findOne({"_id":userId}, (error, data)=>{
            if(error){
                reject(error);
            }
@@ -50,7 +50,8 @@ const storeUserRefreshJWT = (_id, token) => {
            UserSchema.findOneAndUpdate(
                {_id},
                {$set: {"refreshJWT.token": token, "refreshJWT.addedAt": Date.now()}},
-               {new: true}, (error, data) =>{
+               {new: true}, 
+               (error, data) =>{
                    if(error){
                        reject(error);
                    }
@@ -64,13 +65,39 @@ const storeUserRefreshJWT = (_id, token) => {
    })
 }
 
+const updateUserById = (userId, frmData) =>{
+    console.log("UPDATEUSERBYID", frmData, userId)
+    return new Promise((resolve,reject)=>{
+        if((!userId)) return false;
+        try{
+            UserSchema.findOneAndUpdate(
+                {userId},
+                {$set:frmData},
+                {new: true}, 
+                (error, data)=>{
+                    if(error){
+                        console.log("ERROR EN UPDATEUSERBYID", error)
+                        reject(error);
+                    }
+                    resolve(data);
+                    }
+        ).clone();
+        } catch (error) {
+            console.log("ERROR EN UPDATEUSERBYID", error)
+            reject(error);
+        }
+    });
+};
+
+
 const updatePassword = (email, newHashedPass) =>{
     return new Promise((resolve,reject)=>{
         try {
             UserSchema.findOneAndUpdate(
                 {email},
                 {$set:{"password": newHashedPass}},
-                {new: true}, (error, data) =>{
+                {new: true}, 
+                (error, data) =>{
                     if(error){
                         reject(error);
                     }
@@ -106,5 +133,6 @@ module.exports = {
    getUserbyId,
    storeUserRefreshJWT,
    updatePassword,
-   getAllUsers
+   getAllUsers,
+   updateUserById
 };

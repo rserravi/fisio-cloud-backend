@@ -8,6 +8,7 @@ Content-Type: application/json
     "gender":"male",
     "birthdate":"1974-09-15T03:00:00.000Z",
     "locales":"ca-CA",
+    "language":"ca_CA",
     "dni": "43527459G",
     "role":"admin",
     "image":"/images/RubenSerra.jpg",
@@ -37,12 +38,12 @@ Content-Type: application/json
  
 {
    "email": "rubotic1@gmail.com",
-   "password": "password2"
+   "password": "pass"
 }
 
 ### Get a user profile endpoint
 GET http://localhost:3001/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODQwMDk3NCwiZXhwIjoxNjU4NDAxODc0fQ.F-9LdsTF15dhMkXuXJXyvDw3MMQs4Caq0_N2eEznKPk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
 
 ### Get Refresh Token
 GET http://localhost:3001/v1/tokens
@@ -122,3 +123,37 @@ Content-Type: application/json
 ### Get all languajes endpoint
 GET http://localhost:3001/v1/lang
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODc0NDIzMiwiZXhwIjoxNjU4NzQ1MTMyfQ.1E4l3vrcBlHxRlkT3Y1CSaf6MvDilZL8T_Sj0A712TQ
+
+### Update User
+PATCH http://localhost:3001/v1/user/62de6ba9a8b853169103772e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
+Content-Type: application/json
+
+{
+   "_id":"62dfd5e43723fc74a96b4db4",
+    "firstname":"Rubén",
+    "lastname":"Serra i Viusàaaa",
+    "gender":"male",
+    "birthdate":"1974-09-15T03:00:00.000Z",
+    "locales":"ca-CA",
+    "dni": "43527459G",
+    "role":"admin",
+    "image":"/images/RubenSerra.jpg",
+    "emailhome":"rserravi@gmail.com",
+    "emailwork": "rubotic1@gmail.com",
+    "streetaddress": "Costa Rica n5",
+    "cityaddress": "Las Gabias",
+    "stateaddress": "Granada",
+    "postalcodeaddress": "18010",
+    "countryaddress":"Spain",
+    "phonehome": "+34722303012",
+    "phonework": "+34722303012",
+    "whatsapp":  "+34722303012",
+    "socialmedia1":"Facebook",
+    "socialmedia2":"Twitter",
+    "socialmedia3":"Instagram",
+    "socialuser1":"@rserravi",
+    "socialuser2":"@rserravi",
+    "socialuser3":"@rserravi",
+    "lastlogin": ""
+}

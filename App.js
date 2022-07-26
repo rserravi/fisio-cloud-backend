@@ -52,6 +52,7 @@ const languageRouter = require("./src/routers/languages.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
+app.use("/v1/user/:_frmdata", userRouter); 
 app.use("/v1/tokens", tokensRouter);
 app.use("/v1/customer", customerRouter);
 app.use("/v1/lang", languageRouter);
@@ -60,6 +61,7 @@ app.use("/v1/lang", languageRouter);
 const handleError = require("./src/utils/errorHandler");
  
 app.use("*", (req,res, next) =>{
+   console.log(req.body);
    const error = new Error("Resources not found");
    error.status = 404;
    next(error) // send the error to the next router (app.use)

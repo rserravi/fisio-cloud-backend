@@ -2,7 +2,7 @@ const express = require("express");
 const req = require("express/lib/request");
 const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
-const { insertUser, getUserbyEmail, getUserbyId, updatePassword, storeUserRefreshJWT, getAllUsers } = require("../model/user/User.model");
+const { insertUser, getUserbyEmail, getUserbyId, updatePassword, storeUserRefreshJWT, getAllUsers, updateUserById } = require("../model/user/User.model");
 const { createAccessJWT, createRefreshJWT}= require("../helpers/jwt.helpers")
 const { userAuthorization} = require("../middleware/authorization.middleware");
 const { setPasswordResetPin, getPinbyEmailPin, deletePin } = require("../model/RestPin/RestPin.model")
@@ -24,7 +24,6 @@ router.get("/",userAuthorization, async(req,res)=>{
     const userProf = await getUserbyId(_id);
     res.json ({user: userProf});
  })
- 
 
 router.post("/", async(req, res) => {
     console.log(req.body)
@@ -33,6 +32,7 @@ router.post("/", async(req, res) => {
             gender,
             birthdate,
             language,
+            locales,
             dni,
             role,
             image,
@@ -62,7 +62,7 @@ router.post("/", async(req, res) => {
             lastname,
             gender,
             birthdate: new Date(birthdate),
-            locales:language,
+            locales: locales?locales:language,
             dni,
             role,
             image,
@@ -102,6 +102,17 @@ router.post("/", async(req, res) => {
     }
 })
 
+//UPDATE USER
+router.patch("/", async(req,res)=>{
+    
+    const _id = req.params;
+    const _frmdata = req.body;
+
+    const userUpdated = await updateUserById(_id,_frmdata);
+    return res.json({"message":"user updated"});
+ })
+ 
+
 //User sign in Router
 router.post("/login", async(req,res) =>{
     const {email, password} =req.body;
@@ -121,7 +132,7 @@ router.post("/login", async(req,res) =>{
         if (!passFromDb) return res.json({status: "error", message:"Invalid email or password"})
        
         const result = await comparePassword(password, passFromDb);
-        console.log(result);
+        console.log("COMPARE PASSWORDS", user, email, password, passFromDb, result);
         
         if (!result){
             return res.json({status:"unauthorized", message:"Incorrect Password"})

@@ -22,9 +22,10 @@ All the user API router follows '/v1/user/'
 | 1     | '/v1/user/login'                 | POST  | DONE     | No         | Verify user authentication and return JWT      |
 | 2     | '/v1/user/reset-password         | POST  | DONE     | No         | Verify email and email pin to reset the password |
 | 3     | '/v1/user/reset-password         | PATCH | DONE     | No         | Replace with new password.                      |
-| 4     | '/v1/user/{id}                   | GET   | DONE     | Yes        | Get users info                                   |
-| 5     | '/v1/user/                     | POST  | DONE     | Yes        | Create new user
-| 6     | '/v1/user/list                    | GET  | DONE     | Yes        | Get all users list
+| 4     | '/v1/user/{id}                   | GET   | DONE     | Yes        | Get users info |
+| 5     | '/v1/user/{id}                   | PATCH | TODO     | Yes        | Update a user by id
+| 6     | '/v1/user/                     | POST  | DONE     | Yes        | Create new user
+| 7     | '/v1/user/list                    | GET  | DONE     | Yes        | Get all users list
  
 ### Tokens API resources
  
