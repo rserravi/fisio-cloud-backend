@@ -62,6 +62,7 @@ All the customer API router follows '/v1/lang/'
 | 3     | '/v1/history/'                      | PUT    | DONE     |Yes         | Update History by custoId,histoId or _id                |
 | 4     | '/v1/history/'                      | DELETE | DONE     |Yes         | Delete History by custoId and histoId                   |
 | 5     | '/v1/history/deposits'              | GET    | DONE     |Yes         | Get deposits from histories of a custoId          |
+| 6     | '/v1/history/cabins'                | GET    | DONE     |Yes         | Get cabins from a cabin id                        |
 
 ### Services API resources
 All the services API router follows '/v1/services/'
@@ -69,10 +70,23 @@ All the services API router follows '/v1/services/'
  
 | #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
 | ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
-| 1     | '/v1/service/'                      | POST   | DONE     |Yes         | C - Create a service                                     |
-| 2     | '/v1/service/'                      | GET    | DONE     |Yes         | R - Get services list . If _id is provided, get just one                 |
-| 3     | '/v1/service/'                      | PUT    | DONE     |Yes         | U - Update service by  _id                |
-| 4     | '/v1/service/'                      | DELETE | DONE     |Yes         | D - Delete service by _id                   |
+| 1     | '/v1/services/'                      | POST   | DONE     |Yes         | C - Create a service                                     |
+| 2     | '/v1/services/'                      | GET    | DONE     |Yes         | R - Get services list . If _id is provided, get just one                 |
+| 3     | '/v1/services/'                      | PUT    | DONE     |Yes         | U - Update service by  _id                |
+| 4     | '/v1/services/'                      | DELETE | DONE     |Yes         | D - Delete service by _id                   |
+
+
+### Cabins API resources
+All the cabins API router follows '/v1/cabins/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/cabins/'                      | POST   | DONE     |Yes         | C - Create a cabin                                     |
+| 2     | '/v1/cabins/'                      | GET    | DONE     |Yes         | R - Get cabins list . If _id is provided, get just one                 |
+| 3     | '/v1/cabins/'                      | PUT    | DONE     |Yes         | U - Update cabin byi  _id                |
+| 4     | '/v1/cabins/'                      | DELETE | DONE     |Yes         | D - Delete cabin by _id                   |
+
 
 
 ### Setup Language API resources

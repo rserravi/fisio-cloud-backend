@@ -101,7 +101,16 @@ router.get("/deposits", async (req, res)=>{
     }  
 })
 
-
+router.get("/cabins", async (req, res)=>{
+    const { cabin } = req.body;
+    try {
+        const result = await GetCabinFromHistory(cabin);
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+})
  
 module.exports = router;
 

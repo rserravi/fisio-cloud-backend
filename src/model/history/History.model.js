@@ -134,6 +134,24 @@ const getHistoryByDate= (fromDate, toDate, userId) =>{
     });
 }
 
+const GetCabinFromHistory = (cabin) =>{
+    var filter={"cabin":cabin}
+    return new Promise((resolve,reject)=>{
+        try{
+            HistorySchema.find(filter, (error, data)=>{
+            if(error){
+                console.log(error)
+                reject(error);
+            }
+            resolve(data);
+            }
+        ).clone();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 
 module.exports = {
     insertHistory,
@@ -141,5 +159,6 @@ module.exports = {
     updateHistory,
     deleteHistory,
     getHistoryByDate,
+    GetCabinFromHistory
  }
  

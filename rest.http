@@ -253,4 +253,11 @@ Content-Type: application/json
 GET  http://localhost:3001/v1/services
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoicnVib3RpYzFAZ21haWwuY29tIiwiaWF0IjoxNjU4OTA0NTUzLCJleHAiOjE2NjE0OTY1NTN9.sV7wzrN23FDGVD5CoGvyIHfb8HQgQ3BInTIxNScjiaQ
 
+### Create Cabin
+POST http://localhost:3001/v1/cabins
+Content-Type: application/json
 
+{
+   "cabinName":"Visita",
+   "description":"Sortida a domicili"
+}

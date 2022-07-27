@@ -1,5 +1,5 @@
 const express = require("express");
-const { insertService, getServices, deleteServices } = require("../model/services/Services.model");
+const { insertCabin, getCabins, deleteCabins } = require("../model/cabins/Cabins.model")
 
 const router = express.Router();
  
@@ -9,29 +9,29 @@ router.all("/", (req, res, next) =>{
 });
 
 router.post("/", async (req, res)=>{
-    console.log("REQUEST BODY",req.body)
+    console.log(req.body)
     const {
-        serviceName,
-        priceXHour
+        cabinName,
+        description
     } = req.body;
     try {
-        const newServiceObj = {
-            serviceName,
-            priceXHour
+        const newCabinObj = {
+            cabinName,
+            description
         }
-        console.log("NEW SERVICE OBJ", newServiceObj);
-        const result = await insertService(newServiceObj);
+        console.log("NEW CABIN OBJ", newCabinObj);
+        const result = await insertCabin(newCabinObj);
         console.log("RESULT",result);
-        res.json({message: "New Service Created", result})
+        res.json({message: "New Cabin Created", result})
     } catch (err) {
-        res.json({message: "Error en insertService or service.router", err})  
+        res.json({message: "Error en insterCabin or cabin.router", err})  
         }
 })
 
 router.get("/", async (req, res)=>{
     const {_id} = req.body;
     try {
-        const result = await getServices(_id);
+        const result = await getCabins(_id);
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -43,7 +43,7 @@ router.delete("/", async (req, res)=>{
     const {_id} = req.body;
     console.log("ESTO ES EL BODY",req.body)
     try {
-        const result = await deleteServices(_id);
+        const result = await deleteCabins(_id);
         return res.json({status:"success", result});
   
     } catch (error) {

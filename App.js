@@ -50,7 +50,7 @@ const customerRouter = require("./src/routers/customer.router");
 const languageRouter = require("./src/routers/languages.router")
 const historyRouter = require("./src/routers/history.router")
 const servicesRouter = require("./src/routers/services.router")
-
+const cabinsRouter = require("./src/routers/cabins.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
@@ -60,6 +60,8 @@ app.use("/v1/customer", customerRouter);
 app.use("/v1/lang", languageRouter);
 app.use("/v1/history", historyRouter);
 app.use("/v1/services", servicesRouter);
+app.use("/v1/cabins", cabinsRouter)
+
 
 
 //Error handler
