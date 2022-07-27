@@ -130,7 +130,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdt
 Content-Type: application/json
 
 {
-   "_id":"62dfd5e43723fc74a96b4db4",
+    "_id":"62dfd5e43723fc74a96b4db4",
     "firstname":"Rubén",
     "lastname":"Serra i Viusàaaa",
     "gender":"male",
@@ -157,3 +157,100 @@ Content-Type: application/json
     "socialuser3":"@rserravi",
     "lastlogin": ""
 }
+
+
+### Create a history
+POST http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "customerId":"62dbd3fe9484f9c059bc5f4d",
+   "date":"2022-01-02T17:30:00.000Z",
+   "duration":"60",
+   "service":"1",
+   "cabin":"1",
+   "price":"50",
+   "paid":"0",
+   "status":"pending",
+   "closed":"",
+   "notes":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "attachment":[
+      {
+
+      }
+   ]
+}
+
+### Get history by userid and customerid
+GET http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "customerId":"62dbd3fe9484f9c059bc5f4d"
+}
+
+### Get historuy by _id
+GET http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "_id":"62e0e947cd60c039a0507673"
+}
+
+### Update a history
+PUT http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "_id":"62e02ad4442876a7c244b28c",
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "customerId":"62dbd3fe9484f9c059bc5f4d",
+   "date":"2019-04-02T17:30:00.000Z",
+   "duration":50,
+   "service":"2",
+   "cabin":"1",
+   "price":50,
+   "paid":30,
+   "status":"paid",
+   "closed":"2019-04-04T17:30:00.000Z",
+   "notes":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "attachment":[
+      {
+
+      }
+   ]
+}
+
+### Delete a history
+DELETE http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "_id":"62e0205b48d13c09b7a092a5"
+}
+
+### Get Debts
+GET  http://localhost:3001/v1/history/deposits
+Content-Type: application/json
+
+{
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "fromDate":"2018-07-30"
+}
+
+### Create Service
+POST http://localhost:3001/v1/services
+Content-Type: application/json
+
+{
+   "serviceName":"Consulta",
+   "priceXHour":30
+}
+
+### Get All Services
+GET  http://localhost:3001/v1/services
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoicnVib3RpYzFAZ21haWwuY29tIiwiaWF0IjoxNjU4OTA0NTUzLCJleHAiOjE2NjE0OTY1NTN9.sV7wzrN23FDGVD5CoGvyIHfb8HQgQ3BInTIxNScjiaQ
+
+

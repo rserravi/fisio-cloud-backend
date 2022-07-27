@@ -23,7 +23,7 @@ All the user API router follows '/v1/user/'
 | 2     | '/v1/user/reset-password         | POST  | DONE     | No         | Verify email and email pin to reset the password |
 | 3     | '/v1/user/reset-password         | PATCH | DONE     | No         | Replace with new password.                      |
 | 4     | '/v1/user/{id}                   | GET   | DONE     | Yes        | Get users info |
-| 5     | '/v1/user/{id}                   | PATCH | TODO     | Yes        | Update a user by id
+| 5     | '/v1/user/{id}                   | PATCH | DONE     | Yes        | Update a user by id
 | 6     | '/v1/user/                     | POST  | DONE     | Yes        | Create new user
 | 7     | '/v1/user/list                    | GET  | DONE     | Yes        | Get all users list
  
@@ -50,6 +50,29 @@ All the customer API router follows '/v1/customer/'
 | 7     | '/v1/customer/{_custoId}/whastsapp' | GET    | TODO     |Yes         | Get customer whatsapp from ID
 | 8     | '/v1/customer/{_custoId}/mail' | GET    | TODO     |Yes         | Get customer mail from ID
 | 9     | '/v1/customer/{_custoId}/name' | GET    | TODO     |Yes         | Get customer name from ID
+
+### History API resources
+All the customer API router follows '/v1/lang/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/history/'                      | POST   | DONE     |Yes         | Create an history for user                              |
+| 2     | '/v1/history/'                      | GET    | DONE     |Yes         | Get History by custoId and histoId                   |
+| 3     | '/v1/history/'                      | PUT    | DONE     |Yes         | Update History by custoId,histoId or _id                |
+| 4     | '/v1/history/'                      | DELETE | DONE     |Yes         | Delete History by custoId and histoId                   |
+| 5     | '/v1/history/deposits'              | GET    | DONE     |Yes         | Get deposits from histories of a custoId          |
+
+### Services API resources
+All the services API router follows '/v1/services/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/service/'                      | POST   | DONE     |Yes         | C - Create a service                                     |
+| 2     | '/v1/service/'                      | GET    | DONE     |Yes         | R - Get services list . If _id is provided, get just one                 |
+| 3     | '/v1/service/'                      | PUT    | DONE     |Yes         | U - Update service by  _id                |
+| 4     | '/v1/service/'                      | DELETE | DONE     |Yes         | D - Delete service by _id                   |
 
 
 ### Setup Language API resources

@@ -48,6 +48,8 @@ const userRouter = require("./src/routers/user.router");
 const tokensRouter = require("./src/routers/tokensRouter.router");
 const customerRouter = require("./src/routers/customer.router");
 const languageRouter = require("./src/routers/languages.router")
+const historyRouter = require("./src/routers/history.router")
+const servicesRouter = require("./src/routers/services.router")
 
 
 //USE ROUTERS
@@ -56,6 +58,9 @@ app.use("/v1/user/:_frmdata", userRouter);
 app.use("/v1/tokens", tokensRouter);
 app.use("/v1/customer", customerRouter);
 app.use("/v1/lang", languageRouter);
+app.use("/v1/history", historyRouter);
+app.use("/v1/services", servicesRouter);
+
 
 //Error handler
 const handleError = require("./src/utils/errorHandler");

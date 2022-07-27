@@ -1,5 +1,4 @@
 const express = require("express");
-const req = require("express/lib/request");
 const { json } = require("express/lib/response");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helpers");
 const { insertUser, getUserbyEmail, getUserbyId, updatePassword, storeUserRefreshJWT, getAllUsers, updateUserById } = require("../model/user/User.model");
