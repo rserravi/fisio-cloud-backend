@@ -1,11 +1,12 @@
 const express = require("express");
-const { insertHistory, getHistory, updateHistory, deleteHistory, getHistoryByDate } = require("../model/history/History.model");
+const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model")
 
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router();
  
 router.all("/", (req, res, next) =>{
-   //res.json({message: "return from history router"});
+   //res.json({message: "return from Appointment router"});
+   console.log("EN APPO ROUTER")
    next();
 });
 
@@ -24,7 +25,7 @@ router.post("/", async (req, res)=>{
         notes
     } = req.body;
     try {
-        const newHistoObj = {
+        const newAppoObj = {
             userId,
             customerId,
             date: new Date(date),
@@ -38,22 +39,19 @@ router.post("/", async (req, res)=>{
             notes,
             attachment:[] 
         }
-        console.log("NEW HISTO OBJ", newHistoObj);
-        const result = await insertHistory(newHistoObj);
+        console.log("NEW APPO OBJ", newAppoObj);
+        const result = await insertAppointment(newAppoObj);
         console.log("RESULT",result);
-        res.json({message: "New History Created", result})
+        res.json({message: "New Appointment Created", result})
     } catch (err) {
-        res.json({message: "Error en insertHistory or history.router", err})  
+        res.json({message: "Error en insertAppointment or Appointment.router", err})  
         }
 })
 
-//USAR "QUERY".
 router.get("/", async (req, res)=>{
-    const _id = req.query._id;
-    const userId = req.query.userId
-    const customerId = req.query.customerId;
+    const {_id, userId, customerId} = req.body;
     try {
-        const result = await getHistory(_id, userId, customerId);
+        const result = await getAppointment(_id, userId, customerId);
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -65,7 +63,7 @@ router.put("/", async (req, res)=>{
     const frmData = req.body;
     console.log("EN ROUTER",frmData)
     try {
-        const result = await updateHistory(frmData);
+        const result = await updateAppointment(frmData);
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -77,8 +75,8 @@ router.delete("/", async (req, res)=>{
     const {_id} = req.body;
     console.log("EN ROUTER",_id)
     try {
-        const result = await deleteHistory(_id);
-        return res.json({status:"success", message:"History Deleted"});
+        const result = await deleteAppointment(_id);
+        return res.json({status:"success", message:"Appointment Deleted"});
   
     } catch (error) {
         res.json({status:"error", message:error.message});
@@ -89,7 +87,7 @@ router.delete("/", async (req, res)=>{
 router.get("/deposits", async (req, res)=>{
     const {fromDate, toDate, userId } = req.body;
     try {
-        const result = await getHistoryByDate(fromDate, toDate, userId);
+        const result = await getAppointmentByDate(fromDate, toDate, userId);
         var accumulatedDebts=0;
         var accumulatedGains=0;
         for (let histoKey in result){
@@ -107,7 +105,7 @@ router.get("/deposits", async (req, res)=>{
 router.get("/cabins", async (req, res)=>{
     const { cabin } = req.body;
     try {
-        const result = await GetCabinFromHistory(cabin);
+        const result = await GetCabinFromAppointment(cabin);
         return res.json({status:"success", result});
   
     } catch (error) {

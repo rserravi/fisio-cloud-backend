@@ -1,21 +1,21 @@
-const {HistorySchema}= require ("./History.schema") 
+const { AppoSchema}= require ("./Appointments.schema") 
 
-const insertHistory = historyObj =>{
+const insertAppointment = AppointmentObj =>{
     return new Promise((resolve,reject)=>{
         try {
-            HistorySchema(historyObj)
+            AppoSchema(AppointmentObj)
             .save()           
             .then((data)=>resolve(data))
             .catch((error)=> reject(error));
         } catch (error) {
-            console.log("ERROR EN INSERT HISTORY", error)
+            console.log("ERROR EN INSERT Appointment", error)
             reject(error);
         }
     });
 }
 
-// GET HISTORY GIVES BACK HISTORY BY _id, customerId, userId, or userId+customerId
-const getHistory = (_id, userId, customerId) =>{
+// GET Appointment GIVES BACK Appointment BY _id, customerId, userId, or userId+customerId
+const getAppointment = (_id, userId, customerId) =>{
     var filter={}
     if (_id){
         filter ={"_id":_id} 
@@ -31,7 +31,7 @@ const getHistory = (_id, userId, customerId) =>{
     }
     return new Promise((resolve,reject)=>{
         try{
-            HistorySchema.find(filter, (error, data)=>{
+            AppoSchema.find(filter, (error, data)=>{
             if(error){
                 console.log(error)
                 reject(error);
@@ -45,12 +45,12 @@ const getHistory = (_id, userId, customerId) =>{
     });
 }
 
-const updateHistory = (frmData) =>{
+const updateAppointment = (frmData) =>{
     const _id= frmData._id;
     
     return new Promise((resolve,reject)=>{
         try {
-            HistorySchema.findOneAndUpdate(
+            AppoSchema.findOneAndUpdate(
                 {_id},
                 {$set: frmData},
                 {new: true}, 
@@ -68,11 +68,11 @@ const updateHistory = (frmData) =>{
     });
 }
 
-const deleteHistory = (_id) =>{
+const deleteAppointment = (_id) =>{
     
     return new Promise((resolve,reject)=>{
         try {
-            HistorySchema
+            AppoSchema
             .findByIdAndDelete(
                 {_id},
             )
@@ -84,7 +84,7 @@ const deleteHistory = (_id) =>{
     });
 }
 
-const getHistoryByDate= (fromDate, toDate, userId) =>{
+const getAppointmentByDate= (fromDate, toDate, userId) =>{
     var filter = {}
     if (fromDate && !toDate){
         // GETDEBTS FROM
@@ -119,7 +119,7 @@ const getHistoryByDate= (fromDate, toDate, userId) =>{
     console.log(filter)
     return new Promise((resolve,reject)=>{
         try{
-            HistorySchema.find(filter, (error, data)=>{
+            AppoSchema.find(filter, (error, data)=>{
             if(error){
                 console.log(error)
                 reject(error);
@@ -133,11 +133,11 @@ const getHistoryByDate= (fromDate, toDate, userId) =>{
     });
 }
 
-const GetCabinFromHistory = (cabin) =>{
+const GetCabinFromAppointment = (cabin) =>{
     var filter={"cabin":cabin}
     return new Promise((resolve,reject)=>{
         try{
-            HistorySchema.find(filter, (error, data)=>{
+            AppoSchema.find(filter, (error, data)=>{
             if(error){
                 console.log(error)
                 reject(error);
@@ -153,11 +153,11 @@ const GetCabinFromHistory = (cabin) =>{
 
 
 module.exports = {
-    insertHistory,
-    getHistory,
-    updateHistory,
-    deleteHistory,
-    getHistoryByDate,
-    GetCabinFromHistory
+    insertAppointment,
+    getAppointment,
+    updateAppointment,
+    deleteAppointment,
+    getAppointmentByDate,
+    GetCabinFromAppointment
  }
  

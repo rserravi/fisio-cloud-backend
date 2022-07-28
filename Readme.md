@@ -64,6 +64,31 @@ All the customer API router follows '/v1/lang/'
 | 5     | '/v1/history/deposits'              | GET    | DONE     |Yes         | Get deposits from histories of a custoId          |
 | 6     | '/v1/history/cabins'                | GET    | DONE     |Yes         | Get cabins from a cabin id                        |
 
+
+### Appointments API resources
+All the customer API router follows '/v1/appo/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/appo/'                      | POST   | DONE     |Yes         | Create an appointment for user                              |
+| 2     | '/v1/appo/'                      | GET    | DONE     |Yes         | Get Appointment by custoId and appoId                   |
+| 3     | '/v1/appo/'                      | PUT    | DONE     |Yes         | Update Appointment by custoId,appoId or _id                |
+| 4     | '/v1/appo/'                      | DELETE | DONE     |Yes         | Delete Appointment by custoId and histoId                   |
+
+
+### Communication API resources
+All the customer API router follows '/v1/comm/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/comm/'                      | POST   | TODO     |Yes         | Create an appointment for user                              |
+| 2     | '/v1/comm/'                      | GET    | TODO     |Yes         | Get Appointment by custoId and appoId                   |
+| 3     | '/v1/comm/'                      | PUT    | TODO     |Yes         | Update Appointment by custoId,appoId or _id                |
+| 4     | '/v1/comm/'                      | DELETE | TODO     |Yes         | Delete Appointment by custoId and histoId                   |
+
+
 ### Services API resources
 All the services API router follows '/v1/services/'
 

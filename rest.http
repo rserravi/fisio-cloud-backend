@@ -76,30 +76,30 @@ POST http://localhost:3001/v1/customer
 Content-Type: application/json
 
 {
-      "promotedToCustomer":"2019-04-02T17:30:00.000Z",
-      "firstname": "Juanjo",
-      "lastname": "Rubio Burguillos",
-      "dni":"43444444G",
-      "birthdate": "1974-04-04T17:30:00.000Z",
-      "image": "juanjorubio.jpg",
-      "gender": "male",
-      "inbound": "customer",
-      "emailhome":"jrubio@telecom.es",
-      "emailwork":"juanr@telefonica.es",
-      "streetaddress": "21 E 2nd St",
-      "cityaddress": "New York",
-      "stateaddress": "NY",
-      "postalcodeaddress": "10003",
-      "countryaddress":"United States",
-      "phonehome":"212 555-1234",
-      "phonework":"+34 722303012",   
-      "whatsapp": "+34 722303012",
+      "promotedToCustomer":"",
+      "firstname": "Ana",
+      "lastname": "Torroja",
+      "dni":"",
+      "birthdate": "1976-05-04T17:30:00.000Z",
+      "image": "Ana-Torroja.jpg",
+      "gender": "female",
+      "inbound": "lead",
+      "emailhome":"",
+      "emailwork":"",
+      "streetaddress": "",
+      "cityaddress": "",
+      "stateaddress": "",
+      "postalcodeaddress": "",
+      "countryaddress":"",
+      "phonehome":"",
+      "phonework":"+34 733279233",   
+      "whatsapp": "",
       "socialmedia1":"Facebook",
       "socialmedia2":"Twitter",
       "socialmedia3":"Reddit",
-      "socialuser1": "@juanjo.rubio.7798",
-      "socialuser2": "@TeresaRodr_",
-      "socialuser3": "@TeresaRo12",
+      "socialuser1": "",
+      "socialuser2": "",
+      "socialuser3": "",
       "releaseForm":{
                "file":"",
                "generated":false,
@@ -109,7 +109,13 @@ Content-Type: application/json
 
 ### Get all customers endpoint
 GET http://localhost:3001/v1/customer
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODU4OTM0MywiZXhwIjoxNjU4NTkwMjQzfQ.7yfKuTTRCiP7nkZ-unzXEWi830ofYCu8yNrRidTDJlw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODk5MjIzMSwiZXhwIjoxNjU4OTkzMTMxfQ.aw7x_f1-Sier1jrn1ov01VOkx6vRxQ_3VQm2rRa9NIo
+
+
+### Get all customers endpoint
+GET http://localhost:3001/v1/customer
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODk5MjIzMSwiZXhwIjoxNjU4OTkzMTMxfQ.aw7x_f1-Sier1jrn1ov01VOkx6vRxQ_3VQm2rRa9NIo
+
 
 ### Add language endpoint
 POST http://localhost:3001/v1/lang
@@ -261,3 +267,44 @@ Content-Type: application/json
    "cabinName":"Visita",
    "description":"Sortida a domicili"
 }
+
+### Create an appointment
+POST http://localhost:3001/v1/appo
+Content-Type: application/json
+
+{
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "customerId":"62dbd3fe9484f9c059bc5f4d",
+   "date":"2022-06-28T10:00:00.000Z",
+   "duration":"60",
+   "service":"62e10257dba0d09a9c3129f8",
+   "cabin":"62e16e0a220fc4600e44073e",
+   "price":"50",
+   "paid":"0",
+   "status":"pending",
+   "closed":"",
+   "notes":"",
+   "attachment":[
+      {
+
+      }
+   ]
+}
+
+### Get history by userid and customerid
+GET http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "userId":"62dfd5e43723fc74a96b4db4",
+   "customerId":"62dbd3fe9484f9c059bc5f4d"
+}
+
+### Get historuy by _id
+GET http://localhost:3001/v1/history
+Content-Type: application/json
+
+{
+   "_id":"62e2495b37d436a5589543d3"
+}
+
