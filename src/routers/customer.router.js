@@ -1,7 +1,7 @@
 const express = require("express");
 const { userAuthorization } = require("../middleware/authorization.middleware");
 const { getAppointment } = require("../model/appointments/Appointments.model");
-const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer } = require("../model/customer/Customer.model");
+const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer, getNextCustomerById, getPrevCustomerById } = require("../model/customer/Customer.model");
 const { getHistory } = require("../model/history/History.model");
 const router = express.Router();
  
@@ -141,19 +141,22 @@ router.post("/", async (req,res)=>{
 
  // Get a specific customer
 router.get("/:_custoId", userAuthorization, async (req,res)=>{
-    var result = [];
+    var result3 = [];
     try {
         const {_custoId} = req.params;
-        console.log("PARAMS",_custoId)
         const result2 = await getCustomerById(_custoId);
         
         var histories = await getHistory("","",_custoId)
         var appointments = await getAppointment("","",_custoId);
+        var nextCust = await getNextCustomerById(_custoId);
+        var prevCust = await getPrevCustomerById(_custoId);
+        //console.log("NEXT AND PREV", nextCust, prevCust)
         // var comm = await getCommunications("","",_custoId);
-        var item = [];
+        const key = 0
         var item = {};
             
         item["_id"]=result2[key]._id;
+        item["addedAt"]= result2[key].addedAt;
         item["promotedToCustomer"]=result2[key].promotedToCustomer;
         item["firstname"]=result2[key].firstname;
         item["lastname"]=result2[key].lastname;
@@ -182,12 +185,16 @@ router.get("/:_custoId", userAuthorization, async (req,res)=>{
         item["history"]= histories;
         item["appointments"]= appointments;
         item["communications"]= [];
+        item["next_customer"]=nextCust?nextCust:""
+        item["prev_customer"]=prevCust?prevCust:""
         
-        result.push(item);
-
+        result3.push(item);
+        const result = result3[0]
+        console.log(" RESULT ", result)
         return res.json({status:"success", result});
   
     } catch (error) {
+        console.log("ERROR", error.message)
         res.json({status:"error", message:error.message});
     }  
  });

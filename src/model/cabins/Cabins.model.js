@@ -19,14 +19,16 @@ const getCabins = (_id) =>{
     if (_id){
         filter ={"_id":_id} 
         return new Promise((resolve,reject)=>{
+            var result = [];
             try{
                 CabinsSchema.findOne(filter, (error, data)=>{
                 if(error){
                     console.log(error)
                     reject(error);
+                }else{
+                    resolve(data);
                 }
-                resolve(data);
-                }
+            }
             ).clone();
             } catch (error) {
                 reject(error);
@@ -89,10 +91,34 @@ const deleteCabins = (_id) =>{
     });
 }
 
+const getCabinsNameById = (_id) =>{
+    var filter={}
+    if (_id){
+        filter ={"_id":_id} 
+        return new Promise((resolve,reject)=>{
+            var result = [];
+            try{
+                CabinsSchema.findOne(filter, (error, data)=>{
+                if(error){
+                    console.log(error)
+                    reject(error);
+                }else{
+                    resolve(data.cabinName);
+                }
+            }
+            ).clone();
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+}
+
 module.exports = {
     insertCabin,
     getCabins,
     updateCabins,
-    deleteCabins
+    deleteCabins,
+    getCabinsNameById
  }
  

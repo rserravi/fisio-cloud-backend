@@ -268,6 +268,15 @@ Content-Type: application/json
    "description":"Sortida a domicili"
 }
 
+### Get Cabin
+GET http://localhost:3001/v1/cabins
+Content-Type: application/json
+
+{
+   "_id":"62e16e0a220fc4600e44073e"
+}
+
+
 ### Create an appointment
 POST http://localhost:3001/v1/appo
 Content-Type: application/json

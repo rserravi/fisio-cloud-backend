@@ -1,3 +1,6 @@
+const { getCabinsNameById } = require("../cabins/Cabins.model");
+const { getCustomerNameById } = require("../customer/Customer.model");
+const { getServiceNameById } = require("../services/Services.model");
 const { AppoSchema}= require ("./Appointments.schema") 
 
 const insertAppointment = AppointmentObj =>{
@@ -29,20 +32,44 @@ const getAppointment = (_id, userId, customerId) =>{
     if (userId && !customerId){
         filter={"userId": userId}
     }
+   
     return new Promise((resolve,reject)=>{
+        var result = []
         try{
-            AppoSchema.find(filter, (error, data)=>{
+            AppoSchema.find(filter, async(error, data)=>{
             if(error){
                 console.log(error)
                 reject(error);
+            }else{
+                for (key in data){
+                    var item = {}
+                    item["_id"]= data[key]._id;
+                    item["customerId"]=data[key].customerId;
+                    item["customerName"]=await getCustomerNameById(data[key].customerId)
+                    item["date"]=data[key].date;
+                    item["duration"]=data[key].duration;
+                    item["service"]=data[key].service;
+                    item["cabin"]=data[key].cabin;
+                    item["price"]=data[key].price;
+                    item["paid"]=data[key].paid;
+                    item["status"]=data[key].status;
+                    item["closed"]=data[key].closed;
+                    item["notes"]=data[key].notes;
+                    item["attachment"]=data[key].attachment;
+                    item["serviceName"]= await getServiceNameById(data[key].service);
+                    item["cabinName"]=await getCabinsNameById(data[key].cabin);
+                    result.push(item)
+                }
+            
+                resolve(result);
             }
-            resolve(data);
             }
         ).clone();
         } catch (error) {
             reject(error);
         }
     });
+
 }
 
 const updateAppointment = (frmData) =>{

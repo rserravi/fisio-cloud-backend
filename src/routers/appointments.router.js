@@ -1,5 +1,6 @@
 const express = require("express");
-const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model")
+const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model");
+const { getServiceNameById } = require("../model/services/Services.model");
 
 
 const router = express.Router();
@@ -51,7 +52,8 @@ router.post("/", async (req, res)=>{
 router.get("/", async (req, res)=>{
     const {_id, userId, customerId} = req.body;
     try {
-        const result = await getAppointment(_id, userId, customerId);
+        const result= await getAppointment(_id, userId, customerId);
+        
         return res.json({status:"success", result});
   
     } catch (error) {

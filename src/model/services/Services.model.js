@@ -89,10 +89,34 @@ const deleteServices = (_id) =>{
     });
 }
 
+const getServiceNameById = (_id) =>{
+    var filter={}
+
+    filter ={"_id":_id} 
+    return new Promise((resolve,reject)=>{
+        try{
+            ServicesSchema.findOne(filter, (error, data)=>{
+                
+            if(error){
+                console.log(error)
+                reject(error);
+            }
+            else{
+                resolve(data.serviceName);
+            }
+            }
+        ).clone();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 module.exports = {
     insertService,
     getServices,
     updateServices,
-    deleteServices
+    deleteServices,
+    getServiceNameById,
  }
  

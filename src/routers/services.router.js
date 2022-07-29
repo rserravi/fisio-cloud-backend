@@ -29,7 +29,18 @@ router.post("/", async (req, res)=>{
 })
 
 router.get("/", async (req, res)=>{
-    const {_id} = req.body;
+    const {_id} = req.body
+    try {
+        const result = await getServices(_id);
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+})
+
+router.get("/:_id", async (req, res)=>{
+    const _id = req.params._id
     try {
         const result = await getServices(_id);
         return res.json({status:"success", result});
