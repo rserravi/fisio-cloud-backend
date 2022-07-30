@@ -1,6 +1,7 @@
 const express = require("express");
 const { userAuthorization } = require("../middleware/authorization.middleware");
 const { getAppointment } = require("../model/appointments/Appointments.model");
+const { getCommunications } = require("../model/communications/Communications.model");
 const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer, getNextCustomerById, getPrevCustomerById } = require("../model/customer/Customer.model");
 const { getHistory } = require("../model/history/History.model");
 const router = express.Router();
@@ -151,7 +152,7 @@ router.get("/:_custoId", userAuthorization, async (req,res)=>{
         var nextCust = await getNextCustomerById(_custoId);
         var prevCust = await getPrevCustomerById(_custoId);
         //console.log("NEXT AND PREV", nextCust, prevCust)
-        // var comm = await getCommunications("","",_custoId);
+        var comm = await getCommunications("","",_custoId);
         const key = 0
         var item = {};
             
@@ -184,7 +185,7 @@ router.get("/:_custoId", userAuthorization, async (req,res)=>{
         item["releaseForm"]=result2[key].releaseForm;
         item["history"]= histories;
         item["appointments"]= appointments;
-        item["communications"]= [];
+        item["communications"]= comm,
         item["next_customer"]=nextCust?nextCust:""
         item["prev_customer"]=prevCust?prevCust:""
         

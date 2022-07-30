@@ -1,3 +1,6 @@
+const { getCabinsNameById } = require("../cabins/Cabins.model");
+const { getCustomerNameById } = require("../customer/Customer.model");
+const { getServiceNameById } = require("../services/Services.model");
 const {HistorySchema}= require ("./History.schema") 
 
 const insertHistory = historyObj =>{
@@ -31,12 +34,34 @@ const getHistory = (_id, userId, customerId) =>{
     }
     return new Promise((resolve,reject)=>{
         try{
-            HistorySchema.find(filter, (error, data)=>{
+            HistorySchema.find(filter, async (error, data)=>{
+            var result = []
             if(error){
                 console.log(error)
                 reject(error);
+            }else{
+                for (key in data){
+                    var item = {}
+                    item["_id"]= data[key]._id;
+                    item["customerId"]=data[key].customerId;
+                    item["customerName"]=await getCustomerNameById(data[key].customerId)
+                    item["date"]=data[key].date;
+                    item["duration"]=data[key].duration;
+                    item["service"]=data[key].service;
+                    item["cabin"]=data[key].cabin;
+                    item["price"]=data[key].price;
+                    item["paid"]=data[key].paid;
+                    item["status"]=data[key].status;
+                    item["closed"]=data[key].closed;
+                    item["notes"]=data[key].notes;
+                    item["attachment"]=data[key].attachment;
+                    item["serviceName"]= await getServiceNameById(data[key].service);
+                    item["cabinName"]=await getCabinsNameById(data[key].cabin);
+                    result.push(item)
+                }
+            
+                resolve(result);
             }
-            resolve(data);
             }
         ).clone();
         } catch (error) {

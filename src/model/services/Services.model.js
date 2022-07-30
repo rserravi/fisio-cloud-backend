@@ -99,6 +99,7 @@ const getServiceNameById = (_id) =>{
                 
             if(error){
                 console.log(error)
+                resolve("NOT FOUND")
                 reject(error);
             }
             else{

@@ -83,11 +83,12 @@ All the customer API router follows '/v1/comm/'
  
 | #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
 | ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
-| 1     | '/v1/comm/'                      | POST   | TODO     |Yes         | Create an appointment for user                              |
-| 2     | '/v1/comm/'                      | GET    | TODO     |Yes         | Get Appointment by custoId and appoId                   |
-| 3     | '/v1/comm/'                      | PUT    | TODO     |Yes         | Update Appointment by custoId,appoId or _id                |
-| 4     | '/v1/comm/'                      | DELETE | TODO     |Yes         | Delete Appointment by custoId and histoId                   |
-
+| 1     | '/v1/comm/'                      | POST   | DONE     |Yes         | C - Create a communication for customer                              |
+| 2     | '/v1/comm/'                      | GET    | DONE     |Yes         | R - Get communication by custoId and appoId                   |
+| 3     | '/v1/comm/'                      | PUT    | TODO     |Yes         | U - Update communication by custoId,appoId or _id                |
+| 4     | '/v1/comm/'                      | DELETE | TODO     |Yes         | D - Delete communication by custoId and histoId    
+| 5     | '/v1/comm/thread?threadNumber={x}?commId={x}| GET    | DONE     |Yes         | Get Thread by threadNumber or commId
+ 
 
 ### Services API resources
 All the services API router follows '/v1/services/'

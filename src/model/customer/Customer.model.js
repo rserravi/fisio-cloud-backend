@@ -65,7 +65,10 @@ const getCustomerNameById = (_id)=>{
                     const name = data.firstname + " " + data.lastname;
                     resolve(name)
                 })
-              .catch((error)=> reject(error));
+              .catch((error)=> {
+                resolve("NOT FOUND")
+                reject(error)
+            });
           } catch (error) {
               reject(error);
           }

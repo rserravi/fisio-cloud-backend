@@ -101,6 +101,7 @@ const getCabinsNameById = (_id) =>{
                 CabinsSchema.findOne(filter, (error, data)=>{
                 if(error){
                     console.log(error)
+                    resolve("NOT FOUND")
                     reject(error);
                 }else{
                     resolve(data.cabinName);

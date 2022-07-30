@@ -1,7 +1,5 @@
 const express = require("express");
 const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model");
-const { getServiceNameById } = require("../model/services/Services.model");
-
 
 const router = express.Router();
  

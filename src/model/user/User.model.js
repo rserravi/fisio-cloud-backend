@@ -124,6 +124,25 @@ const updatePassword = (email, newHashedPass) =>{
         }
     });
 }
+
+const getUserNameById = (_id)=>{
+    return new Promise((resolve,reject)=>{
+          try {
+            UserSchema
+              .findOne({_id})
+              .then((data)=>{
+                    const name = data.firstname + " " + data.lastname;
+                    resolve(name)
+                })
+              .catch((error)=> {
+                resolve("NOT FOUND")
+                reject(error)
+            });
+          } catch (error) {
+              reject(error);
+          }
+      });
+   };
  
 
  
@@ -134,5 +153,6 @@ module.exports = {
    storeUserRefreshJWT,
    updatePassword,
    getAllUsers,
-   updateUserById
+   updateUserById,
+   getUserNameById
 };
