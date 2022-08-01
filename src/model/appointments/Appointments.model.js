@@ -1,5 +1,5 @@
 const { getCabinsNameById } = require("../cabins/Cabins.model");
-const { getCustomerNameById } = require("../customer/Customer.model");
+const { getCustomerNameById, getCustomerPhone, getCustomerMail, getCustomerWhatsapp } = require("../customer/Customer.model");
 const { getServiceNameById } = require("../services/Services.model");
 const { AppoSchema}= require ("./Appointments.schema") 
 
@@ -43,6 +43,7 @@ const getAppointment = (_id, userId, customerId) =>{
             }else{
                 for (key in data){
                     var item = {}
+                    item["rowid"]=key;
                     item["_id"]= data[key]._id;
                     item["customerId"]=data[key].customerId;
                     item["customerName"]=await getCustomerNameById(data[key].customerId)
@@ -58,6 +59,9 @@ const getAppointment = (_id, userId, customerId) =>{
                     item["attachment"]=data[key].attachment;
                     item["serviceName"]= await getServiceNameById(data[key].service);
                     item["cabinName"]=await getCabinsNameById(data[key].cabin);
+                    item["customerPhone"]= await getCustomerPhone(data[key].customerId);
+                    item["customerMail"]= await getCustomerMail(data[key].customerId);
+                    item["customerWhatsapp"]= await getCustomerWhatsapp(data[key].customerId);
                     result.push(item)
                 }
             

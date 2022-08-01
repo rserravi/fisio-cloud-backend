@@ -109,11 +109,11 @@ Content-Type: application/json
 
 ### Get all customers endpoint
 GET http://localhost:3001/v1/customer
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODk5MjIzMSwiZXhwIjoxNjU4OTkzMTMxfQ.aw7x_f1-Sier1jrn1ov01VOkx6vRxQ_3VQm2rRa9NIo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTI4MTMwNCwiZXhwIjoxNjU5MjgyMjA0fQ.xkCTIFBkZsd3xcA7SqXNqa4aKOsNyiNVbfJQJFMZ7NY
 
 
-### Get all customers endpoint
-GET http://localhost:3001/v1/customer
+### Get a customers endpoint
+GET http://localhost:3001/v1/customer/62e24e63f4d8345e7942545c
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODk5MjIzMSwiZXhwIjoxNjU4OTkzMTMxfQ.aw7x_f1-Sier1jrn1ov01VOkx6vRxQ_3VQm2rRa9NIo
 
 
@@ -283,8 +283,8 @@ Content-Type: application/json
 
 {
    "userId":"62dfd5e43723fc74a96b4db4",
-   "customerId":"62dbd3fe9484f9c059bc5f4d",
-   "date":"2022-06-28T10:00:00.000Z",
+   "customerId":"62e24e63f4d8345e7942545c",
+   "date":"2022-08-28T10:00:00.000Z",
    "duration":"60",
    "service":"62e10257dba0d09a9c3129f8",
    "cabin":"62e16e0a220fc4600e44073e",
@@ -323,17 +323,17 @@ Content-Type: application/json
 
 {
    "userId":"62e0037a22eca2027e968c1c",
-   "customerId":"62dbd3fe9484f9c059bc5f4d",
-   "customerSent":true,
-   "date": "2018-02-12T17:30:00.000Z",
-   "type": "email",
-   "duration": "50",
-   "subject": "Información",
-   "notes": "Preguntó por horarios. Debo devolver la llamada cuanto antes.",
-   "follow": "call",
-   "alertfollow": "2022-08-10T16:30:00.000Z",
+   "customerId":"62e24e63f4d8345e7942545c",
+   "customerSent":false,
+   "date": "2018-02-15T17:30:00.000Z",
+   "type": "call",
+   "duration": 20,
+   "subject": "Contestación",
+   "notes": "Informado sobre horarios:si no llama le envio un recordatorio en un més",
+   "follow": "mail",
+   "alertfollow": "2022-08-21T16:30:00.000Z",
    "thread":"1",
-   "readed":false,
+   "readed":true,
    "answered":false
 }
 

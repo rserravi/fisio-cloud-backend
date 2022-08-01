@@ -75,6 +75,60 @@ const getCustomerNameById = (_id)=>{
       });
    };
 
+const getCustomerPhone = (_id)=>{
+    return new Promise((resolve,reject)=>{
+          try {
+              CustomerSchema
+              .findOne({_id})
+              .then((data)=>{
+                    data.phonework?resolve (data.phonework):data.phonehome?resolve(data.phonehome):resolve("");
+                })
+              .catch((error)=> {
+                resolve("NOT FOUND")
+                reject(error)
+            });
+          } catch (error) {
+              reject(error);
+          }
+      });
+   };
+
+const getCustomerMail = (_id)=>{
+    return new Promise((resolve,reject)=>{
+          try {
+              CustomerSchema
+              .findOne({_id})
+              .then((data)=>{
+                    data.emailwork?resolve (data.emailwork):data.emailhome?resolve(data.emailhome):resolve("");
+                })
+              .catch((error)=> {
+                resolve("NOT FOUND")
+                reject(error)
+            });
+          } catch (error) {
+              reject(error);
+          }
+      });
+   };
+
+const getCustomerWhatsapp = (_id)=>{
+    return new Promise((resolve,reject)=>{
+          try {
+              CustomerSchema
+              .findOne({_id})
+              .then((data)=>{
+                    data.whatsapp?resolve (data.whatsapp):resolve("")
+                })
+              .catch((error)=> {
+                resolve("NOT FOUND")
+                reject(error)
+            });
+          } catch (error) {
+              reject(error);
+          }
+      });
+   };
+
 const getLastCustomerRecordId = ()=>{
     return new Promise((resolve,reject)=>{
         try {
@@ -176,4 +230,7 @@ module.exports = {
     getPrevCustomerById,
     getLastCustomerRecordId,
     getFirstCustomerRecordId,
+    getCustomerPhone,
+    getCustomerMail,
+    getCustomerWhatsapp,
  }

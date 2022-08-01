@@ -44,6 +44,16 @@ router.post("/", async (req,res)=>{
         }
 
      } = req.body;
+
+     //SET INBOUND
+     var inbound2 = "lead"
+     if (!inbound && generated){
+        inbound2 = "customer"
+     }
+     if (inbound){
+        inbound2 = inbound;
+     }
+
      try {
         const newUserObj = {
             addedAt: new Date(),
@@ -53,7 +63,7 @@ router.post("/", async (req,res)=>{
             birthdate: birthdate?new Date(birthdate):new Date(2000,1,1),
             dni,
             image,
-            inbound,
+            inbound: inbound2,
             promotedToCustomer: promotedToCustomer? new Date(promotedToCustomer): new Date(2000,1,1),
             emailhome,
             emailwork,

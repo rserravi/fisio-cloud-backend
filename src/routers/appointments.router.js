@@ -48,10 +48,11 @@ router.post("/", async (req, res)=>{
 })
 
 router.get("/", async (req, res)=>{
-    const {_id, userId, customerId} = req.body;
+    const {_id, userId, customerId} = req.query;
     try {
         const result= await getAppointment(_id, userId, customerId);
-        
+        //const forCal = await getAppoCalendarFormat(_id, userId, customerId);
+        console.log("RESULT EN GET APPO", result)
         return res.json({status:"success", result});
   
     } catch (error) {

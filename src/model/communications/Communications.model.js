@@ -127,7 +127,7 @@ const getThreadByCommId = (commId) =>{
                 console.log(error)
                 reject(error);
             }else{ 
-                var filter2 = {"thread":data.thread}
+                var filter2 = {"thread":data.thread, "customerId":data.customerId}
                 try{
                     CommunicationsSchema.find(filter2, async (error, data)=>{
                     var result = []
