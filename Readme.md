@@ -101,6 +101,17 @@ All the services API router follows '/v1/services/'
 | 3     | '/v1/services/'                      | PUT    | DONE     |Yes         | U - Update service by  _id                |
 | 4     | '/v1/services/'                      | DELETE | DONE     |Yes         | D - Delete service by _id                   |
 
+### AlertsSetup API resources
+All the AlertsSetup API router follows '/v1/setupalerts/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/setupalerts/'                      | POST   | DONE     |Yes         | C - Create an alert setup by customerId                                     |
+| 2     | '/v1/setupalerts/'                      | GET    | DONE     |Yes         | R - Get AlertsSetup. If userId is provided, get just one                 |
+| 3     | '/v1/setupalerts/'                      | PUT    | DONE     |Yes         | U - Update AlertsSetup by  userId                |
+| 4     | '/v1/setupalerts/'                      | DELETE | DONE     |Yes         | D - Delete AlertsSetup by userId                   |
+
 
 ### Cabins API resources
 All the cabins API router follows '/v1/cabins/'

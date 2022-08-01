@@ -339,3 +339,17 @@ Content-Type: application/json
 
 ### Get Communication by Id
 GET http://localhost:3001/v1/comm?_id=62e4f1c16c07354370c956e8
+
+### Create new AlertSetup
+POST http://localhost:3001/v1/setupalerts
+Content-Type: application/json
+
+{
+   "userId":"62e0037a22eca2027e968c1c",
+   "showAppoAlerts":true,
+   "showCommAlerts":true,
+   "showPast": true,
+   "showComming":true,
+   "pastDaysPeriod":7,
+   "commingDaysPeriod":5
+}

@@ -53,6 +53,7 @@ const servicesRouter = require("./src/routers/services.router")
 const cabinsRouter = require("./src/routers/cabins.router")
 const appointmentsRouter = require("./src/routers/appointments.router")
 const communicationsRouter = require("./src/routers/communications.router")
+const alertSetupRouter = require("./src/routers/setupAlerts.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
@@ -64,7 +65,8 @@ app.use("/v1/history", historyRouter);
 app.use("/v1/services", servicesRouter);
 app.use("/v1/cabins", cabinsRouter);
 app.use("/v1/appo", appointmentsRouter);
-app.use("/v1/comm", communicationsRouter)
+app.use("/v1/comm", communicationsRouter);
+app.use("/v1/setupalerts", alertSetupRouter);
 
 
 
