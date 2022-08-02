@@ -353,3 +353,6 @@ Content-Type: application/json
    "pastDaysPeriod":7,
    "commingDaysPeriod":5
 }
+
+### GetCalendar 
+GET http://localhost:3001/v1/calendar?userId=62e0037a22eca2027e968c1c&mode=seeall

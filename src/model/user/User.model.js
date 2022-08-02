@@ -143,6 +143,25 @@ const getUserNameById = (_id)=>{
           }
       });
    };
+
+const getLocaleFromUser = (_id) =>{
+    return new Promise((resolve,reject)=>{
+        try {
+          UserSchema
+            .findOne({_id})
+            .then((data)=>{
+                  const locale = data.locales;
+                  resolve(locale)
+              })
+            .catch((error)=> {
+              resolve("NOT FOUND")
+              reject(error)
+          });
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
  
 
  
@@ -154,5 +173,6 @@ module.exports = {
    updatePassword,
    getAllUsers,
    updateUserById,
-   getUserNameById
+   getUserNameById,
+   getLocaleFromUser,
 };

@@ -112,6 +112,16 @@ All the AlertsSetup API router follows '/v1/setupalerts/'
 | 3     | '/v1/setupalerts/'                      | PUT    | DONE     |Yes         | U - Update AlertsSetup by  userId                |
 | 4     | '/v1/setupalerts/'                      | DELETE | DONE     |Yes         | D - Delete AlertsSetup by userId                   |
 
+### Calendar API resources
+All the Calendar API router follows '/v1/calendar/'
+
+MODE: "pastdate","nextdate","alldate,"notanswered","pastcomm","nextcomm","allcomm","seeallNoBirth","seeall"
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/calendar/?userId&mode'                      | GET   | DONE     |No         | R - Get calendar items by "mode"                                   |
+
+
 
 ### Cabins API resources
 All the cabins API router follows '/v1/cabins/'
