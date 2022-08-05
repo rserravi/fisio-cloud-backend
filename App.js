@@ -55,6 +55,7 @@ const appointmentsRouter = require("./src/routers/appointments.router")
 const communicationsRouter = require("./src/routers/communications.router")
 const alertSetupRouter = require("./src/routers/setupAlerts.router")
 const getcalendar = require("./src/routers/calendar.router")
+const reportsRouter = require("./src/routers/reports.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
@@ -69,7 +70,7 @@ app.use("/v1/appo", appointmentsRouter);
 app.use("/v1/comm", communicationsRouter);
 app.use("/v1/setupalerts", alertSetupRouter);
 app.use("/v1/calendar", getcalendar);
-
+app.use("/v1/reports", reportsRouter)
 
 
 //Error handler

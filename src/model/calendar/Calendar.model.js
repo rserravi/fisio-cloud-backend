@@ -1,12 +1,14 @@
-const { AppoSchema}= require ("../appointments/Appointments.schema") 
-const { CommunicationsSchema}= require ("../communications/Communications.schema") 
-const {CustomerSchema}= require ("../customer/Customer.schema");
+const { AppoSchema }= require ("../appointments/Appointments.schema") 
+const { CommunicationsSchema }= require ("../communications/Communications.schema") 
+const { CustomerSchema }= require ("../customer/Customer.schema");
+const { SetupAlertsSchema } = require ("../setupalerts/SetupAlerts.schema")
 const { getCustomerNameById } = require("../customer/Customer.model")
 const { getServiceNameById } = require("../services/Services.model")
 const timeDifference = require("../../utils/timeUtils");
 const addMinutesToDate = require("../../utils/timeUtils");
 const moment = require("moment");
 const { getLocaleFromUser } = require("../user/User.model");
+const { getAlertsSetup } = require("../setupalerts/SetupAlerts.model");
 
 var showAppo=false;
 var showAlert=false;
@@ -244,7 +246,6 @@ const getBirth = (filterBirth, mode)=>{
                     console.log(error)
                     reject(error);
                 }else{
-                    console.log("DATA EN BIRTHDATES", data)
                     for (key in data){
                         if(data[key].birthdate)
                         {
@@ -315,7 +316,56 @@ const getBirth = (filterBirth, mode)=>{
 }
 
 
-//MODE: "pastdate","nextdate","alldate,"notanswered","pastcomm","nextcomm","allcomm","seeallNoBirth","seeall"
+const GetBellAlerts = async (userId)=>{
+    var alertSetup =[]
+    try {
+        alertSetup = await getAlertsSetup(userId);
+    } catch (error) {
+        console.log("ERROR EN GETBELLALERTS",error)
+    }
+
+    showAppo = alertSetup.showAppoAlerts;
+    showAlert = alertSetup.showCommAlerts;
+    showBirth = false;
+
+    var today = new Date()
+    var lowLimitDate= moment(today).add(-alertSetup.pastDaysPeriod, 'days').toDate();
+    today = new Date()
+    var highLimitDate = moment(today).add(alertSetup.commingDaysPeriod, 'days').toDate();
+
+    if (!alertSetup.showPast){
+        lowLimitDate = new Date()
+    }
+    if (!alertSetup.showComming){
+        highLimitDate = new Date()
+    }
+    
+    const filterAppo = {
+            "userId":userId,
+            "date":{$lte: highLimitDate,
+                    $gte: lowLimitDate}
+        }
+    const filterAlert={
+            "userId":userId,
+            "alertfollow":{$lte: highLimitDate,
+                    $gte: lowLimitDate},
+            $or:[{ readed: false},{answered:false}]
+        }
+    
+
+    try {
+        const appo = await GetAppo(filterAppo, "seeall");
+        const comm = await getAlerts(filterAlert, "seeall");
+        const birth= [];
+        var merged = deepMergeFlatten(appo, comm, birth)
+        //merged.forEach((el, index)=> el.id = index+1);
+        return merged;
+    } catch (error) {
+        console.log("ERROR EN FUNCIONES ", error)
+    }
+   
+}
+
 const GetCalendar = async (userId, mode)=>{
     console.log("EN GET CALENDAR",userId, mode)
     var filterAppo={}
@@ -457,5 +507,6 @@ const GetCalendar = async (userId, mode)=>{
 }
 
 module.exports = {
-    GetCalendar
+    GetCalendar,
+    GetBellAlerts
  }

@@ -1,4 +1,7 @@
 const {CustomerSchema}= require ("./Customer.schema");
+var _ = require('underscore');
+const { fillData } = require("../reports/Reports.model");
+
 
 const insertCustomer = customerObj =>{
     return new Promise((resolve,reject)=>{
@@ -219,6 +222,74 @@ const getPrevCustomerById = (curId)=>{
     });
 }
 
+const GetLeadsAndCustomersForChart = (locale)=>{
+    return new Promise(async (resolve,reject)=>{
+        try{
+            var jsonObj = [];
+            var data = await getAllCustomers();
+          
+            //SORT DATA (USING UNDERSCORE)
+            const sortedData=_.sortBy(data,'addedAt')
+            const expandedData = (()=>{
+              var newData = [];
+              for (let key in sortedData){
+                var item = {}
+                item["custoName"] = sortedData[key].firstname + " " +sortedData[key].lastname;
+                item["monthandyear"] = new Date(sortedData[key].addedAt).toLocaleString(locale, { month: 'short' }) + " " + new Date(sortedData[key].addedAt).getFullYear();
+                item["date"]=sortedData[key].addedAt;
+                item["inbound"]=sortedData[key].inbound;
+                item["custoName"]= sortedData[key].firstname + " " + sortedData[key].lastname;
+                newData.push(item)
+              }
+              
+              return newData;
+            })
+          
+            const groupedData = _.groupBy(expandedData(), "monthandyear" )
+            const filledData = fillData(groupedData, locale);
+          
+            for (const [key, value] of Object.entries(filledData)){
+          
+              var item={}
+              item["name"]= key;
+              const leads = _.filter(value, ((item)=>{return item.inbound==="lead"}))
+              item["leads"]= leads.length?leads.length:0
+              const custo = _.filter(value, ((item)=>{return item.inbound!=="lead"}))
+              item["customers"]= custo.length?custo.length:0;
+             
+              const custoname = (()=>{
+                var nameResult = ""
+                for (let key in value){
+                  if (value[key].inbound!=="lead")
+                  nameResult += " - " + value[key].custoName;
+                  
+                }
+                return nameResult; 
+              })
+              item["custoName"]= custoname()?custoname():"";
+              
+              const leadname = (()=>{
+                var nameResult = ""
+                for (let key in value){
+                  if (value[key].inbound==="lead")
+                  nameResult += " - " + value[key].custoName;
+                  
+                }
+                return nameResult; 
+              })
+              item["leadName"]= leadname()?leadname():"";
+              jsonObj.push(item)
+              
+            }
+            
+            resolve(jsonObj);
+            
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 
 module.exports = {
     insertCustomer,
@@ -233,4 +304,5 @@ module.exports = {
     getCustomerPhone,
     getCustomerMail,
     getCustomerWhatsapp,
+    GetLeadsAndCustomersForChart
  }

@@ -64,6 +64,14 @@ All the customer API router follows '/v1/lang/'
 | 5     | '/v1/history/deposits'              | GET    | DONE     |Yes         | Get deposits from histories of a custoId          |
 | 6     | '/v1/history/cabins'                | GET    | DONE     |Yes         | Get cabins from a cabin id                        |
 
+### Reports API resources
+All the customer API router follows '/v1/reports/'
+
+ 
+| #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
+| ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
+| 1     | '/v1/reports/'                      | GET   | DONE     |Yes         | Gives back a bunch of reports in same JSON                  |
+| 2     | '/v1/reports/depositsforchart'      | GET    | DONE     |Yes         | Get deposits to show in chart       
 
 ### Appointments API resources
 All the customer API router follows '/v1/appo/'

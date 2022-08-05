@@ -37,9 +37,10 @@ const getHistory = (_id, userId, customerId) =>{
             HistorySchema.find(filter, async (error, data)=>{
             var result = []
             if(error){
-                console.log(error)
+                console.log("ERROR EN HYSTORYSCHEMA FIND",error)
                 reject(error);
             }else{
+                console.log("DATOS EN GETHISTORY,",data)
                 for (key in data){
                     var item = {}
                     item["_id"]= data[key]._id;
@@ -63,9 +64,13 @@ const getHistory = (_id, userId, customerId) =>{
                 resolve(result);
             }
             }
-        ).clone();
+        ).clone()
+        .catch((error)=>{
+            console.log("EERROR EN EL FOR DE HISTORYSCHEMA FIND", error, "CON FILTRO", filter)
+        }
+        )
         } catch (error) {
-            reject(error);
+            reject("ERROR EN EL FIND",error, "FILTRO", filter);
         }
     });
 }
@@ -176,6 +181,64 @@ const GetCabinFromHistory = (cabin) =>{
     });
 }
 
+const getServicesByCabin = (cabin)=>{
+    return new Promise((resolve,reject)=>{
+        try{
+            HistorySchema.find({"cabin":cabin}, (error, data)=>{
+            if(error){
+                console.log(error)
+                reject(error);
+            }
+            console.log("CABINA", cabin, "SERVICIOS TOTALES", data)
+            resolve (data.length);
+            }
+            
+        ).clone();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+const getServicesRealized = (service)=>{
+    return new Promise((resolve,reject)=>{
+        try{
+            HistorySchema.find({"service":service}, (error, data)=>{
+            if(error){
+                console.log(error)
+                reject(error);
+            }
+            console.log("DATA EN GET SERVICES",data.length)
+            resolve (data.length);
+            }
+            
+        ).clone();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+
+const getServicesByUser =  (userId)=>{
+    console.log("USER ID EN GETSERVBYUSER",userId)
+    return new Promise((resolve,reject)=>{
+        try{
+            HistorySchema.find({"userId":userId}, (error, data)=>{
+            if(error){
+                console.log(error)
+                reject(error);
+            }
+            resolve (data.length);
+            }
+            
+        ).clone();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 
 module.exports = {
     insertHistory,
@@ -183,6 +246,9 @@ module.exports = {
     updateHistory,
     deleteHistory,
     getHistoryByDate,
-    GetCabinFromHistory
+    GetCabinFromHistory,
+    getServicesByCabin,
+    getServicesRealized,
+    getServicesByUser
  }
  

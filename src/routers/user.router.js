@@ -116,6 +116,8 @@ router.patch("/", async(req,res)=>{
 router.post("/login", async(req,res) =>{
     const {email, password} =req.body;
 
+    console.log("DATOS EN LOGIN", email, password)
+
     //hash password and compare with the one in db
 
     if(!email || !password) {
@@ -126,6 +128,7 @@ router.post("/login", async(req,res) =>{
     try {
          //get user with email from db
         const user = await getUserbyEmail(email);
+        console.log("USER EN LOGIN",user)
         const passFromDb = user && user._id ? user.password : null;
 
         if (!passFromDb) return res.json({status: "error", message:"Invalid email or password"})

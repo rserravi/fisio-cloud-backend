@@ -65,7 +65,6 @@ const updateAlertsSetup = (frmData) =>{
                         console.log("ERROR", error)
                         reject(error);
                     }
-                    console.log("DATA ACTUALIZADA",data);
                     resolve(data);
                     }
             ).clone();

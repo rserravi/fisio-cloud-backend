@@ -47,7 +47,7 @@ router.get("/", async (req, res)=>{
         return res.json({status:"success", result});
   
     } catch (error) {
-        console.log(error)
+        console.log("ERROR EN ROUTER GET ALERTS",error)
         res.json({status:"error", message:error.message});
     }  
 })

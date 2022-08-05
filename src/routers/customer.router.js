@@ -4,6 +4,7 @@ const { getAppointment } = require("../model/appointments/Appointments.model");
 const { getCommunications } = require("../model/communications/Communications.model");
 const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer, getNextCustomerById, getPrevCustomerById } = require("../model/customer/Customer.model");
 const { getHistory } = require("../model/history/History.model");
+
 const router = express.Router();
  
 router.all("/", (req, res, next) =>{
@@ -107,7 +108,7 @@ router.post("/", async (req,res)=>{
         for (const key in result2){
             var histories = await getHistory("","",result2[key]._id)
             var appointments = await getAppointment("","",result2[key]._id);
-            // var comm = await getCommunications("","",result[key]._id);
+            var comm = await getCommunications("","",result2[key]._id);
             var item = {};
             
             item["_id"]=result2[key]._id;
@@ -138,7 +139,7 @@ router.post("/", async (req,res)=>{
             item["releaseForm"]=result2[key].releaseForm;
             item["history"]= histories
             item["appointments"]= appointments
-            item["communications"]= [];
+            item["communications"]= comm;
             result.push(item);
         }
 

@@ -1,7 +1,6 @@
 const express = require("express");
 const { insertHistory, getHistory, updateHistory, deleteHistory, getHistoryByDate } = require("../model/history/History.model");
 
-
 const router = express.Router({ mergeParams: true });
  
 router.all("/", (req, res, next) =>{

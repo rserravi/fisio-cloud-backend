@@ -67,10 +67,9 @@ const addMinutesToDate = (date, minutes)=>{
 }
 
 const addMonthtoDate= (date, months) =>{
-  var oldDate = new Date(date)
-  var newd = new Date(date)
-  newd.setMonth(oldDate.getMonth()+Number(months));
-  return newd
+  const newDate = date;
+    const returnDate= moment(newDate).add(months, 'M').toISOString();
+    return returnDate;
 }
 
 const addYeartoDate= (date, years) =>{
@@ -144,5 +143,6 @@ const twoDigitsDateOptions = {
 
 module.exports = (
     addMinutesToDate,
+    addMonthtoDate,
     timeDifference
  )

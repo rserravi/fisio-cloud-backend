@@ -109,7 +109,7 @@ Content-Type: application/json
 
 ### Get all customers endpoint
 GET http://localhost:3001/v1/customer
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTI4MTMwNCwiZXhwIjoxNjU5MjgyMjA0fQ.xkCTIFBkZsd3xcA7SqXNqa4aKOsNyiNVbfJQJFMZ7NY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTUxNzExOCwiZXhwIjoxNjU5NTE4MDE4fQ.GUgA-mgSvIdXzMHIIMmcFC7FdMY5OF3F7LApKVl6vIk
 
 
 ### Get a customers endpoint
@@ -171,16 +171,16 @@ Content-Type: application/json
 
 {
    "userId":"62dfd5e43723fc74a96b4db4",
-   "customerId":"62dbd3fe9484f9c059bc5f4d",
-   "date":"2022-01-02T17:30:00.000Z",
+   "customerId":"62e24e63f4d8345e7942545c",
+   "date":"2020-11-02T17:30:00.000Z",
    "duration":"60",
-   "service":"1",
-   "cabin":"1",
+   "service":"62e10257dba0d09a9c3129f8",
+   "cabin":"62e16e0a220fc4600e44073e",
    "price":"50",
-   "paid":"0",
-   "status":"pending",
+   "paid":"50",
+   "status":"paid",
    "closed":"",
-   "notes":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "notes":"Lorem fistrum occaecat aliqua de la pradera aute por la gloria de mi madre. Incididunt velit minim labore te va a hasé pupitaa. Cillum dolore te voy a borrar el cerito adipisicing elit eiusmod diodenoo pupita a wan benemeritaar. A gramenawer tiene musho peligro fistro sit amet dolore velit veniam. Pupita ese pedazo de eiusmod sit amet. Ut no puedor sit amet a peich torpedo te voy a borrar el cerito occaecat a wan. Aute diodeno a wan adipisicing apetecan a gramenawer quietooor aliquip voluptate.",
    "attachment":[
       {
 
@@ -340,6 +340,9 @@ Content-Type: application/json
 ### Get Communication by Id
 GET http://localhost:3001/v1/comm?_id=62e4f1c16c07354370c956e8
 
+### Get Communication by Id
+GET http://localhost:3001/v1/comm
+
 ### Create new AlertSetup
 POST http://localhost:3001/v1/setupalerts
 Content-Type: application/json
@@ -356,3 +359,13 @@ Content-Type: application/json
 
 ### GetCalendar 
 GET http://localhost:3001/v1/calendar?userId=62e0037a22eca2027e968c1c&mode=seeall
+
+### GetReports 
+GET http://localhost:3001/v1/reports/?locale=ca-CA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
+
+
+### GetDepositsForArray 
+GET http://localhost:3001/v1/reports/depositsforchart?locale=ca-CA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
+

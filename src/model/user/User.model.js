@@ -162,7 +162,6 @@ const getLocaleFromUser = (_id) =>{
         }
     });
 }
- 
 
  
 module.exports = {

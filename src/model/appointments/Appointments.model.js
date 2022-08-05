@@ -41,6 +41,7 @@ const getAppointment = (_id, userId, customerId) =>{
                 console.log(error)
                 reject(error);
             }else{
+                console.log("DATOS EN GETAPPO", data)
                 for (key in data){
                     var item = {}
                     item["rowid"]=key;
