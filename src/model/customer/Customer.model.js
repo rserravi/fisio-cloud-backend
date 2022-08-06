@@ -1,6 +1,6 @@
 const {CustomerSchema}= require ("./Customer.schema");
 var _ = require('underscore');
-const { fillData } = require("../reports/Reports.model");
+const fillData  = require("../../utils/dataUtils");
 
 
 const insertCustomer = customerObj =>{

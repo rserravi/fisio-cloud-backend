@@ -362,10 +362,12 @@ GET http://localhost:3001/v1/calendar?userId=62e0037a22eca2027e968c1c&mode=seeal
 
 ### GetReports 
 GET http://localhost:3001/v1/reports/?locale=ca-CA
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTc3NDYzMywiZXhwIjoxNjU5Nzc1NTMzfQ.DFAVdFkxW_sqrTlf5LL_gj5uk6zNkyCJYYC48FETmLE
 
 
 ### GetDepositsForArray 
 GET http://localhost:3001/v1/reports/depositsforchart?locale=ca-CA
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODgyNTg5MCwiZXhwIjoxNjU4ODI2NzkwfQ.4A-LWymg37-UfaH8TerytxA1LFMe_XuKP-CIgiq7ZjU
 
+### Get Deposits from Date
+GET http://localhost:3001/v1/deposits?from=2000-01-01&end=2022-08-10&userId=62e0037a22eca2027e968c1c

@@ -1,5 +1,6 @@
 const { HistorySchema }= require ("../history/History.schema");
 const moment = require("moment");
+const fillData = require("../../utils/dataUtils")
 var _ = require('underscore');
 const { getCabins } = require("../cabins/Cabins.model");
 const { getServicesByCabin, getServicesRealized, getServicesByUser } = require("../history/History.model");
@@ -7,36 +8,7 @@ const { getServices } = require("../services/Services.model");
 const { getAllUsers } = require("../user/User.model");
 const nameInitial = require("../../utils/nameUtils");
 
-const GetArrayOfMonthAndYear = (monthandyear, data) =>{
-  let found = {}
-  try {
-      for (const [key, value] of Object.entries(data)){
-        if (key === monthandyear){
-          found = value
-        }
-      }
-  } catch (error) {
-    console.log(error)
-  }
-    
-  return found;
-  
-  }
 
-const fillData = (data, locale)=>{
-    var jsonObj = []
-    const firstDay = Object.values(data)[0][0].date;
-    var actualDay = new Date(firstDay)
-    while (actualDay<=new Date()){
-      const actualMonth = new Date(actualDay).toLocaleDateString(locale, { month: 'short' });
-      const actualYear = new Date(actualDay). getUTCFullYear();
-      const monthandyear = actualMonth + " " + actualYear;
-      jsonObj[monthandyear] = GetArrayOfMonthAndYear(monthandyear, data);
-      var newDate = moment(actualDay).add(1, 'months').toISOString();
-      actualDay = new Date(newDate);
-    }
-    return jsonObj;
-  }
 
 // GET HISTORY GIVES BACK HISTORY BY _id, customerId, userId, or userId+customerId
 const getDepositsArrayForChart = (locale) =>{
@@ -182,6 +154,5 @@ module.exports = {
     GetServicesForChart,
     GetServicesRealizedByUsersForChart,
     GetLeadsByDate,
-    fillData
 }
  
