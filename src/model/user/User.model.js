@@ -71,7 +71,7 @@ const updateUserById = (userId, frmData) =>{
         if((!userId)) return false;
         try{
             UserSchema.findOneAndUpdate(
-                {userId},
+                {_id: userId},
                 {$set:frmData},
                 {new: true}, 
                 (error, data)=>{

@@ -12,12 +12,10 @@ const CustomerSchema = mongoose.Schema ({
     firstname: {
         type: String,
         maxlenght: 50,
-        required: true
     },
     lastname: {
         type: String,
         maxlenght: 50,
-        required: true
     },
     gender: {
         type: String,

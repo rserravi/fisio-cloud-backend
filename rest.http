@@ -113,8 +113,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdt
 
 
 ### Get a customers endpoint
-GET http://localhost:3001/v1/customer/62e24e63f4d8345e7942545c
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1ODk5MjIzMSwiZXhwIjoxNjU4OTkzMTMxfQ.aw7x_f1-Sier1jrn1ov01VOkx6vRxQ_3VQm2rRa9NIo
+GET http://localhost:3001/v1/customer/62dbd3fe9484f9c059bc5f4d
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTg1NzY0MiwiZXhwIjoxNjU5ODU4NTQyfQ.mRwvk8SAim_-7p7F9gUGRYMU-wXaX8pUqS7-q0e7aeg
+
+### Update a customer
+PATCH http://localhost:3001/v1/customer/62e24f59f4d8345e7942545e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTg1NzY0MiwiZXhwIjoxNjU5ODU4NTQyfQ.mRwvk8SAim_-7p7F9gUGRYMU-wXaX8pUqS7-q0e7aeg
+Content-Type: application/json
+
+{
+   "inbound":"customer",
+   "emailhome":"arrimadas@gmail.com"
+}
 
 
 ### Add language endpoint

@@ -3,10 +3,10 @@ var _ = require('underscore');
 const fillData  = require("../../utils/dataUtils");
 
 
-const insertCustomer = customerObj =>{
+const insertCustomer = customerArray =>{
     return new Promise((resolve,reject)=>{
         try {
-            CustomerSchema(customerObj)
+            CustomerSchema(customerArray)
             .save()           
             .then((data)=>resolve(data))
             .catch((error)=> reject(error));
@@ -290,6 +290,30 @@ const GetLeadsAndCustomersForChart = (locale)=>{
     });
 }
 
+const updateCustomer = (customerId, frmData) =>{
+    console.log("UPDATECUSTOMER",customerId, frmData)
+    return new Promise((resolve,reject)=>{
+        if((!customerId)) return false;
+        try{
+            CustomerSchema.findOneAndUpdate(
+                {_id: customerId},
+                {$set:frmData},
+                {new: true}, 
+                (error, data)=>{
+                    if(error){
+                        console.log("ERROR EN UPDATECUSTOMER", error)
+                        reject(error);
+                    }
+                    resolve(data);
+                    }
+        ).clone();
+        } catch (error) {
+            console.log("ERROR EN UPDATECUSTOMER", error)
+            reject(error);
+        }
+    });
+};
+
 
 module.exports = {
     insertCustomer,
@@ -304,5 +328,6 @@ module.exports = {
     getCustomerPhone,
     getCustomerMail,
     getCustomerWhatsapp,
-    GetLeadsAndCustomersForChart
+    GetLeadsAndCustomersForChart,
+    updateCustomer
  }

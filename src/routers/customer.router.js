@@ -2,7 +2,7 @@ const express = require("express");
 const { userAuthorization } = require("../middleware/authorization.middleware");
 const { getAppointment } = require("../model/appointments/Appointments.model");
 const { getCommunications } = require("../model/communications/Communications.model");
-const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer, getNextCustomerById, getPrevCustomerById } = require("../model/customer/Customer.model");
+const { insertCustomer, getAllCustomers, getCustomerById, deleteCustomer, getNextCustomerById, getPrevCustomerById, updateCustomer } = require("../model/customer/Customer.model");
 const { getHistory } = require("../model/history/History.model");
 
 const router = express.Router();
@@ -218,6 +218,20 @@ router.delete("/:_id", userAuthorization, async (req,res)=>{
         const result = await deleteCustomer({_id});
         console.log(result);
         return res.json({status:"success", message:"ticket deleted"});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+ });
+
+ // Update a customer
+router.patch("/:_id", async (req,res)=>{
+    try {
+        const {_id} = req.params;
+        const data = req.body.body
+        const result = await updateCustomer(_id, data);
+        console.log(result);
+        return res.json({status:"success", message:"Customer Updated", result});
   
     } catch (error) {
         res.json({status:"error", message:error.message});
