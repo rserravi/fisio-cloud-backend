@@ -135,7 +135,7 @@ const getThreadByCommId = (commId) =>{
                         console.log(error)
                         reject(error);
                     }else{
-                        console.log("DATA EN SEGUNDA PARTE DE GETTHREADBYID", data )
+                        //console.log("DATA EN SEGUNDA PARTE DE GETTHREADBYID", data )
                         for (key in data){
                             var item = {}
                             item["_id"]= data[key]._id;

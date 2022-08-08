@@ -66,7 +66,7 @@ const updateCabins= (frmData) =>{
                         reject(error);
                     }
                     resolve(data);
-                    console.log(data);
+                    //console.log(data);
                     }
             ).clone();
         } catch (error) {
@@ -76,7 +76,7 @@ const updateCabins= (frmData) =>{
 }
 
 const deleteCabins = (_id) =>{
-    console.log("ID EN DELETE CabinS",_id)
+    //console.log("ID EN DELETE CabinS",_id)
     return new Promise((resolve,reject)=>{
         try {
             CabinsSchema

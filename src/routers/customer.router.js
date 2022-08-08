@@ -86,9 +86,8 @@ router.post("/", async (req,res)=>{
             generated,
             signed        
         }
-        console.log("NEW USER OBJ", newUserObj);
         const result = await insertCustomer(newUserObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New Customer Created", result})
     } catch (err) {
         if (err.code===11000){
@@ -99,6 +98,29 @@ router.post("/", async (req,res)=>{
         }
     }
    
+ })
+
+ router.get("/list", userAuthorization, async (req,res)=>{
+    var result = [];
+    try {
+        const result2 = await getAllCustomers();
+        //console.log("RESULT2 EN GETCUSTOMER LIST ROUTER", result2)
+        for (const key in result2){
+
+            var item = {};
+            
+            item["_id"]=result2[key]._id
+            item["customerName"]=result2[key].firstname + " " + result2[key].lastname;
+            result.push(item);
+        }
+
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        console.log("ERROR EN ROUTER", error)
+        res.json({status:"error", message:error.message});
+    }  
+ 
  })
 
  router.get("/", userAuthorization, async (req,res)=>{
@@ -151,6 +173,7 @@ router.post("/", async (req,res)=>{
  
  })
 
+
  // Get a specific customer
 router.get("/:_custoId", userAuthorization, async (req,res)=>{
     var result3 = [];
@@ -202,7 +225,7 @@ router.get("/:_custoId", userAuthorization, async (req,res)=>{
         
         result3.push(item);
         const result = result3[0]
-        console.log(" RESULT ", result)
+        //console.log(" RESULT ", result)
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -216,7 +239,7 @@ router.delete("/:_id", userAuthorization, async (req,res)=>{
     try {
         const {_id} = req.params;
         const result = await deleteCustomer({_id});
-        console.log(result);
+        //console.log(result);
         return res.json({status:"success", message:"ticket deleted"});
   
     } catch (error) {
@@ -230,13 +253,15 @@ router.patch("/:_id", async (req,res)=>{
         const {_id} = req.params;
         const data = req.body.body
         const result = await updateCustomer(_id, data);
-        console.log(result);
+        //console.log(result);
         return res.json({status:"success", message:"Customer Updated", result});
   
     } catch (error) {
         res.json({status:"error", message:error.message});
     }  
  });
+
+
  
  
 module.exports = router;

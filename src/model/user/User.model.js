@@ -4,7 +4,7 @@ const insertUser = userObj => {
    return new Promise((resolve, reject)=>{
        UserSchema(userObj)
        .save()
-       .then(data => {console.log("sin error");resolve(data)})
+       .then(data => resolve(data))
        .catch(error => {console.log(error);reject(error)})
    })
 };
@@ -66,7 +66,7 @@ const storeUserRefreshJWT = (_id, token) => {
 }
 
 const updateUserById = (userId, frmData) =>{
-    console.log("UPDATEUSERBYID", frmData, userId)
+    //console.log("UPDATEUSERBYID", frmData, userId)
     return new Promise((resolve,reject)=>{
         if((!userId)) return false;
         try{

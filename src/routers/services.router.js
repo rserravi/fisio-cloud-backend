@@ -9,7 +9,7 @@ router.all("/", (req, res, next) =>{
 });
 
 router.post("/", async (req, res)=>{
-    console.log("REQUEST BODY",req.body)
+    //console.log("REQUEST BODY",req.body)
     const {
         serviceName,
         priceXHour
@@ -19,9 +19,9 @@ router.post("/", async (req, res)=>{
             serviceName,
             priceXHour
         }
-        console.log("NEW SERVICE OBJ", newServiceObj);
+        //console.log("NEW SERVICE OBJ", newServiceObj);
         const result = await insertService(newServiceObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New Service Created", result})
     } catch (err) {
         res.json({message: "Error en insertService or service.router", err})  
@@ -52,7 +52,7 @@ router.get("/:_id", async (req, res)=>{
 
 router.delete("/", async (req, res)=>{
     const {_id} = req.body;
-    console.log("ESTO ES EL BODY",req.body)
+    //console.log("ESTO ES EL BODY",req.body)
     try {
         const result = await deleteServices(_id);
         return res.json({status:"success", result});

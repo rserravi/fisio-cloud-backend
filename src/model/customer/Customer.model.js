@@ -22,7 +22,7 @@ const getAllCustomers = () =>{
         try {
             CustomerSchema
             .find()           
-            .then((data)=>{resolve(data)})
+            .then((data)=>resolve(data))
             .catch((error)=> reject(error));
         } catch (error) {
             console.log("ERROR EN GET ALL CUSTOMER", error)

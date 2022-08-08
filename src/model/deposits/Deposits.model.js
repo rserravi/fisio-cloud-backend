@@ -4,7 +4,7 @@ const { getCustomerNameById } = require("../customer/Customer.model");
 
 
 const getDepositsByDate= (fromDate, toDate, userId) =>{
-    console.log ("DATOS EN GETDEPOSITSBYDATE", fromDate, toDate, userId)
+    //console.log ("DATOS EN GETDEPOSITSBYDATE", fromDate, toDate, userId)
     var filter = {}
     if (fromDate && !toDate){
         // GETDEBTS FROM
@@ -36,7 +36,7 @@ const getDepositsByDate= (fromDate, toDate, userId) =>{
         }
     }
     
-    console.log(filter)
+    //console.log(filter)
     return new Promise((resolve,reject)=>{
         try{
             HistorySchema.find(filter, async (error, data)=>{
@@ -44,7 +44,7 @@ const getDepositsByDate= (fromDate, toDate, userId) =>{
                 console.log(error)
                 reject(error);
             }
-            console.log("DATA EN FIND HISTORY", data)
+            //console.log("DATA EN FIND HISTORY", data)
             var deposits = [];
             var item = {};
             var accumulatedDebts = 0;
@@ -108,7 +108,7 @@ const getIncomeAmountByDate= (fromDate, toDate, userId) =>{
         }
     }
     
-    console.log(filter)
+    //console.log(filter)
     return new Promise((resolve,reject)=>{
         try{
             HistorySchema.find(filter, async (error, data)=>{
@@ -117,7 +117,7 @@ const getIncomeAmountByDate= (fromDate, toDate, userId) =>{
                 reject(error);
             }
             var accumulatedGains =0;
-            console.log("DATA EN FIND HISTORY", data)
+            //console.log("DATA EN FIND HISTORY", data)
             var item = {};
             for (key in data){
                accumulatedGains+= data[key].paid;

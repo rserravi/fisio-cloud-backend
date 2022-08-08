@@ -13,7 +13,7 @@ router.get("/", async (req, res)=>{
     const fromDate = new Date(req.query.from);
     const endDate = new Date(req.query.end);
     const userId = req.query.userId;
-    console.log("EN ROUTER GET", req.query)
+    //console.log("EN ROUTER GET", req.query)
     try {
         const result = await getDepositsByDate(fromDate, endDate, userId);
         return res.json({status:"success", result});

@@ -41,7 +41,7 @@ const getAppointment = (_id, userId, customerId) =>{
                 console.log(error)
                 reject(error);
             }else{
-                console.log("DATOS EN GETAPPO", data)
+                //console.log("DATOS EN GETAPPO", data)
                 for (key in data){
                     var item = {}
                     item["rowid"]=key;
@@ -79,11 +79,11 @@ const getAppointment = (_id, userId, customerId) =>{
 
 const updateAppointment = (frmData) =>{
     const _id= frmData._id;
-    
+    //console.log("UPDATEAPPOINTMENT", frmData)
     return new Promise((resolve,reject)=>{
         try {
             AppoSchema.findOneAndUpdate(
-                {_id},
+                {_id: _id},
                 {$set: frmData},
                 {new: true}, 
                 (error, data) =>{
@@ -101,12 +101,12 @@ const updateAppointment = (frmData) =>{
 }
 
 const deleteAppointment = (_id) =>{
-    
+    console.log("ID EN DELETEAPPO",_id)
     return new Promise((resolve,reject)=>{
         try {
             AppoSchema
             .findByIdAndDelete(
-                {_id},
+                {_id:_id},
             )
             .then((data)=>resolve(data))
             .catch((error)=> reject(error));
@@ -148,7 +148,7 @@ const getAppointmentByDate= (fromDate, toDate, userId) =>{
         }
     }
     
-    console.log(filter)
+    //console.log(filter)
     return new Promise((resolve,reject)=>{
         try{
             AppoSchema.find(filter, (error, data)=>{

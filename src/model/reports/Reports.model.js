@@ -78,7 +78,7 @@ const GetCabinsForChart = ()=>{
         try {
             var jsonObj=[];
             const cabins = await getCabins();
-            console.log ("CABINS EN GET CABINS", cabins)
+            //console.log ("CABINS EN GET CABINS", cabins)
             for (let key in cabins){
                 const cabinId = cabins[key]._id.toString()
                 const services = await getServicesByCabin(cabinId);
@@ -103,7 +103,7 @@ const GetServicesForChart=()=>{
         try {
             var jsonObj=[];
             const services = await getServices();
-            console.log ("SERVICES EN GET SERVICES", services)
+            //console.log ("SERVICES EN GET SERVICES", services)
             for (let key in services){
                 const serviceId = services[key]._id.toString();
                 const realized = await getServicesRealized(serviceId);

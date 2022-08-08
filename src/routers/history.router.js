@@ -37,9 +37,9 @@ router.post("/", async (req, res)=>{
             notes,
             attachment:[] 
         }
-        console.log("NEW HISTO OBJ", newHistoObj);
+        //console.log("NEW HISTO OBJ", newHistoObj);
         const result = await insertHistory(newHistoObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New History Created", result})
     } catch (err) {
         res.json({message: "Error en insertHistory or history.router", err})  
@@ -62,7 +62,7 @@ router.get("/", async (req, res)=>{
 
 router.put("/", async (req, res)=>{
     const frmData = req.body;
-    console.log("EN ROUTER",frmData)
+    //console.log("EN ROUTER",frmData)
     try {
         const result = await updateHistory(frmData);
         return res.json({status:"success", result});
@@ -74,7 +74,7 @@ router.put("/", async (req, res)=>{
 
 router.delete("/", async (req, res)=>{
     const {_id} = req.body;
-    console.log("EN ROUTER",_id)
+    //console.log("EN ROUTER",_id)
     try {
         const result = await deleteHistory(_id);
         return res.json({status:"success", message:"History Deleted"});

@@ -74,7 +74,7 @@ const updateServices= (frmData) =>{
 }
 
 const deleteServices = (_id) =>{
-    console.log("ID EN DELETE SERVICES",_id)
+    //console.log("ID EN DELETE SERVICES",_id)
     return new Promise((resolve,reject)=>{
         try {
             ServicesSchema

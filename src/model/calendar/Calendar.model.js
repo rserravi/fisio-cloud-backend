@@ -367,7 +367,7 @@ const GetBellAlerts = async (userId)=>{
 }
 
 const GetCalendar = async (userId, mode)=>{
-    console.log("EN GET CALENDAR",userId, mode)
+    //console.log("EN GET CALENDAR",userId, mode)
     var filterAppo={}
     var filterAlert={}
     var filterBirth={}

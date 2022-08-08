@@ -40,9 +40,9 @@ router.post("/", async (req, res)=>{
             readed,
             answered
         }
-        console.log("NEW COMM OBJ", newCommObj);
+        //console.log("NEW COMM OBJ", newCommObj);
         const result = await insertCommunication(newCommObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New Comm Created", result})
     } catch (err) {
         res.json({message: "Error en insertCommunication or Communication.router", err})  
@@ -69,7 +69,7 @@ router.get("/thread", async (req, res)=>{
     const commId = req.query.commId;
 
     if (threadNumber && !commId){
-        console.log("ESTAMOS EN THREAD")
+        //console.log("ESTAMOS EN THREAD")
         try {
             const result = await getThread(threadNumber);
             return res.json({status:"success", result});
@@ -80,7 +80,7 @@ router.get("/thread", async (req, res)=>{
     }
 
     if (commId){
-        console.log("ESTAMOS EN GET THREAD BY COMMIN ROUTER")
+        //console.log("ESTAMOS EN GET THREAD BY COMMIN ROUTER")
         try {
             const result = await getThreadByCommId(commId);
             return res.json({status:"success", result});

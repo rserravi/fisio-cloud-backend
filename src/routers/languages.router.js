@@ -17,14 +17,14 @@ router.post("/", async(req, res) => {
         name,
         language            
          } = req.body;
-    console.log(req.body)
+    //console.log(req.body)
     try {
         const newLangObj = {
             name,
             language
         }
         const result = await insertLanguage(newLangObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New Lang Created", result})
     } catch (err) {
         res.json({message: "Error en language router or insertLanguage", err})   

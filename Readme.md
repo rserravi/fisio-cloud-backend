@@ -46,10 +46,7 @@ All the customer API router follows '/v1/customer/'
 | 3     | '/v1/customer'                 | POST   | DONE     |Yes         | Create a new customer with no appo, comm, hist 
 | 4     | '/v1/customer/{_custoId}'        | DELETE | DONE     |Yes         | Delete a customer custoId
 | 5     | '/v1/customer/{_custoId}'        | PATCH    | DONE     |Yes         | Update customer data 
-| 6     | '/v1/customer/{_custoId}/phone   | GET    | TODO     |Yes         | Get customer phone from ID
-| 7     | '/v1/customer/{_custoId}/whastsapp' | GET    | TODO     |Yes         | Get customer whatsapp from ID
-| 8     | '/v1/customer/{_custoId}/mail' | GET    | TODO     |Yes         | Get customer mail from ID
-| 9     | '/v1/customer/{_custoId}/name' | GET    | TODO     |Yes         | Get customer name from ID
+| 6     | '/v1/customer/list            | GET    | DONE     |Yes         | Get customer list for search nbar    |
 
 ### History API resources
 All the customer API router follows '/v1/lang/'

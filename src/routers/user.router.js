@@ -25,7 +25,7 @@ router.get("/",userAuthorization, async(req,res)=>{
  })
 
 router.post("/", async(req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
     const { firstname,
             lastname,
             gender,
@@ -86,9 +86,9 @@ router.post("/", async(req, res) => {
             createAccessJWT,
             createRefreshJWT
         }
-        console.log(newUserObj);
+        //console.log(newUserObj);
         const result = await insertUser(newUserObj);
-        console.log("RESULT",result);
+        //console.log("RESULT",result);
         res.json({message: "New User Created", result})
     } catch (err) {
         if (err.code===11000){
@@ -116,7 +116,7 @@ router.patch("/", async(req,res)=>{
 router.post("/login", async(req,res) =>{
     const {email, password} =req.body;
 
-    console.log("DATOS EN LOGIN", email, password)
+    //console.log("DATOS EN LOGIN", email, password)
 
     //hash password and compare with the one in db
 
@@ -128,19 +128,19 @@ router.post("/login", async(req,res) =>{
     try {
          //get user with email from db
         const user = await getUserbyEmail(email);
-        console.log("USER EN LOGIN",user)
+        //console.log("USER EN LOGIN",user)
         const passFromDb = user && user._id ? user.password : null;
 
         if (!passFromDb) return res.json({status: "error", message:"Invalid email or password"})
        
         const result = await comparePassword(password, passFromDb);
-        console.log("COMPARE PASSWORDS", user, email, password, passFromDb, result);
+        //console.log("COMPARE PASSWORDS", user, email, password, passFromDb, result);
         
         if (!result){
             return res.json({status:"unauthorized", message:"Incorrect Password"})
         }
 
-        console.log("HAY USER EMAILWORK", user.emailwork, email)
+        //console.log("HAY USER EMAILWORK", user.emailwork, email)
        
         const accessJWT = await createAccessJWT(email, `${user._id}`); //NOTE: user._id is converted to string, to avoid passing as object
         const refreshJWT = await createRefreshJWT(email,`${user._id}`);
@@ -202,7 +202,7 @@ router.patch("/reset-password", updatePassValidation, async (req, res)=>{
   
         //3- encrypt new password
         const hashedPass = await hashPassword(newPassword);
-        console.log( newPassword, + " "+ hashedPass);
+        //console.log( newPassword, + " "+ hashedPass);
         //4- update password in DB
         const user = await updatePassword(email,hashedPass);
         if (user._id) {

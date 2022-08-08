@@ -5,7 +5,6 @@ const router = express.Router();
  
 router.all("/", (req, res, next) =>{
    //res.json({message: "return from Appointment router"});
-   console.log("EN APPO ROUTER")
    next();
 });
 
@@ -38,9 +37,7 @@ router.post("/", async (req, res)=>{
             notes,
             attachment:[] 
         }
-        console.log("NEW APPO OBJ", newAppoObj);
         const result = await insertAppointment(newAppoObj);
-        console.log("RESULT",result);
         res.json({message: "New Appointment Created", result})
     } catch (err) {
         res.json({message: "Error en insertAppointment or Appointment.router", err})  
@@ -51,8 +48,6 @@ router.get("/", async (req, res)=>{
     const {_id, userId, customerId} = req.query;
     try {
         const result= await getAppointment(_id, userId, customerId);
-        //const forCal = await getAppoCalendarFormat(_id, userId, customerId);
-        console.log("RESULT EN GET APPO", result)
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -62,9 +57,8 @@ router.get("/", async (req, res)=>{
 
 router.put("/", async (req, res)=>{
     const frmData = req.body;
-    console.log("EN ROUTER",frmData)
     try {
-        const result = await updateAppointment(frmData);
+        const result = await updateAppointment(frmData.body);
         return res.json({status:"success", result});
   
     } catch (error) {
@@ -73,11 +67,11 @@ router.put("/", async (req, res)=>{
 })
 
 router.delete("/", async (req, res)=>{
-    const {_id} = req.body;
-    console.log("EN ROUTER",_id)
+    const {_id} = req.query;
+    console.log("QUERY EN DELETE",req.query)
     try {
         const result = await deleteAppointment(_id);
-        return res.json({status:"success", message:"Appointment Deleted"});
+        return res.json({status:"success", message:"Appointment Deleted", result});
   
     } catch (error) {
         res.json({status:"error", message:error.message});

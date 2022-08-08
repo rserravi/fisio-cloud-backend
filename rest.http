@@ -111,6 +111,10 @@ Content-Type: application/json
 GET http://localhost:3001/v1/customer
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTUxNzExOCwiZXhwIjoxNjU5NTE4MDE4fQ.GUgA-mgSvIdXzMHIIMmcFC7FdMY5OF3F7LApKVl6vIk
 
+### Get customers list endpoint
+GET http://localhost:3001/v1/customer/list
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdtYWlsLmNvbSIsImlhdCI6MTY1OTk0NDUyNCwiZXhwIjoxNjU5OTQ1NDI0fQ.WZGED1OJKUlTvAtHo1jeMp4E3tOfqfFNSPAoQptrnsI
+
 
 ### Get a customers endpoint
 GET http://localhost:3001/v1/customer/62dbd3fe9484f9c059bc5f4d

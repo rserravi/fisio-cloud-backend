@@ -52,7 +52,7 @@ const getAlertsSetup = (userId) =>{
 
 const updateAlertsSetup = (frmData) =>{
     const userId= frmData.alerts.userId;
-    console.log("frmData", frmData)
+    //console.log("frmData", frmData)
     
     return new Promise((resolve,reject)=>{
         try {
@@ -75,7 +75,7 @@ const updateAlertsSetup = (frmData) =>{
 }
 
 const deleteAlertsSetup = (userId) =>{
-    console.log("USERID EN DELETE SERVICES",userId)
+    //console.log("USERID EN DELETE SERVICES",userId)
     return new Promise((resolve,reject)=>{
         try {
             SetupAlertsSchema

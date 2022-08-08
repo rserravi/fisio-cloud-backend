@@ -40,7 +40,7 @@ const getHistory = (_id, userId, customerId) =>{
                 console.log("ERROR EN HYSTORYSCHEMA FIND",error)
                 reject(error);
             }else{
-                console.log("DATOS EN GETHISTORY,",data)
+                //console.log("DATOS EN GETHISTORY,",data)
                 for (key in data){
                     var item = {}
                     item["_id"]= data[key]._id;
@@ -89,7 +89,7 @@ const updateHistory = (frmData) =>{
                         reject(error);
                     }
                     resolve(data);
-                    console.log(data);
+                    //console.log(data);
                     }
             ).clone();
         } catch (error) {
@@ -146,7 +146,7 @@ const getHistoryByDate= (fromDate, toDate, userId) =>{
         }
     }
     
-    console.log(filter)
+    //console.log(filter)
     return new Promise((resolve,reject)=>{
         try{
             HistorySchema.find(filter, (error, data)=>{
@@ -189,7 +189,7 @@ const getServicesByCabin = (cabin)=>{
                 console.log(error)
                 reject(error);
             }
-            console.log("CABINA", cabin, "SERVICIOS TOTALES", data)
+            //console.log("CABINA", cabin, "SERVICIOS TOTALES", data)
             resolve (data.length);
             }
             
@@ -208,7 +208,7 @@ const getServicesRealized = (service)=>{
                 console.log(error)
                 reject(error);
             }
-            console.log("DATA EN GET SERVICES",data.length)
+            //console.log("DATA EN GET SERVICES",data.length)
             resolve (data.length);
             }
             
@@ -221,7 +221,7 @@ const getServicesRealized = (service)=>{
 
 
 const getServicesByUser =  (userId)=>{
-    console.log("USER ID EN GETSERVBYUSER",userId)
+    //console.log("USER ID EN GETSERVBYUSER",userId)
     return new Promise((resolve,reject)=>{
         try{
             HistorySchema.find({"userId":userId}, (error, data)=>{
