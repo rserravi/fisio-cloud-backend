@@ -55,10 +55,10 @@ const getDepositsByDate= (fromDate, toDate, userId) =>{
                 item["income"]= data[key].paid;
                 item["debts"]= data[key].price - data[key].paid;
                 item["customerName"]= await getCustomerNameById(data[key].customerId)
-                item["date"]= data[key].date;
+                item["date"]= data[key].date?data[key].date:new Date()
                 item["price"]= data[key].price;
                 item["service"]= await getServiceNameById(data[key].service);
-                item["duration"]= data[key].duration;
+                item["duration"]= data[key].duration?data[key].duration:0;
                 item["closed"]= data[key].closed;
                 deposits.push(item)
                 accumulatedGains += data[key].paid;

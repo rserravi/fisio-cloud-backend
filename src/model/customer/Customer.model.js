@@ -45,15 +45,17 @@ const getCustomerById = (_id)=>{
 };
 
 const deleteCustomer = ({_id}) =>{
+    console.log("ID EN DELETECUSTOMER", _id)
     return new Promise((resolve,reject)=>{
         try {
-            TicketSchema
+            CustomerSchema
             .findByIdAndDelete(
-                {_id },
+                {_id},
             )
             .then((data)=>resolve(data))
-            .catch((error)=> reject(error));
+            .catch((error)=> {console.log("ERROR EN DELETE CUSTOMER", error);reject(error)});
         } catch (error) {
+            console.log("ERROR EN PROMISE DELETECUSTOMER", error)
             reject(error);
         }
     });

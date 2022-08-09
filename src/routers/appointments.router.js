@@ -1,5 +1,6 @@
 const express = require("express");
 const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model");
+const { insertHistory } = require("../model/history/History.model");
 
 const router = express.Router();
  
@@ -72,6 +73,37 @@ router.delete("/", async (req, res)=>{
     try {
         const result = await deleteAppointment(_id);
         return res.json({status:"success", message:"Appointment Deleted", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+})
+
+router.delete("/close", async (req, res)=>{
+    const {_id} = req.query;
+    console.log("QUERY EN DELETE",req.query)
+    try {
+        const oldappo= await getAppointment(_id);
+        //console.log("OLDAPPO", oldappo[0])
+        const newHistoObj = {
+            userId : oldappo[0].userId,
+            customerId: oldappo[0].customerId,
+            date: oldappo[0].date,
+            duration: oldappo[0].duration,
+            service: oldappo[0].service,
+            cabin: oldappo[0].cabin,
+            price: oldappo[0].price,
+            paid: oldappo[0].paid,
+            status: oldappo[0].status,
+            closed: new Date(),
+            notes: oldappo[0].notes,
+            attachment: oldappo[0].attachment
+
+        }
+        //console.log("NEW HISTOOBJ,",newHistoObj)
+        const result = await insertHistory(newHistoObj);
+        const del = await deleteAppointment(_id);
+        return res.json({status:"success", message:"Appointment moved to history", result, del});
   
     } catch (error) {
         res.json({status:"error", message:error.message});

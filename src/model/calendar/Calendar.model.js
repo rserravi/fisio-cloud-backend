@@ -125,7 +125,7 @@ const GetAppo = (filterAppo, mode)=>{
                             var commAction = "";
                             var allDay = false;
                             var customerName = await getCustomerNameById(data[key].customerId)
-                            var resourceId = data[key]._id.toString();
+                            var resourceId = data[key]._id?data[key]._id.toString():""
                             var title ="Appointment with "+ customerName + " for " + service;
                             const customerId = data[key].customerId;
         
@@ -195,7 +195,7 @@ const getAlerts =(filterAlert, mode)=>{
                             if (mode="seeall" ||mode==="seeallNoBirth" || mode==="alldate" || (mode==="pastcomm" && isPast) || (mode==="nextcomm" && isNext)){
                                 
                                 var customerName = await getCustomerNameById(data[key].customerId)
-                                var commAction = data[key].follow 
+                                var commAction = data[key].follow?data[key].follow:""
                                 var title = commAction + " a " + customerName;
                                 var service = "";
                                 

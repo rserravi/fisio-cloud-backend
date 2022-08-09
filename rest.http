@@ -184,17 +184,17 @@ POST http://localhost:3001/v1/history
 Content-Type: application/json
 
 {
-   "userId":"62dfd5e43723fc74a96b4db4",
-   "customerId":"62e24e63f4d8345e7942545c",
-   "date":"2020-11-02T17:30:00.000Z",
+   "userId":"62e0037a22eca2027e968c1c",
+   "customerId":"62dbd3fe9484f9c059bc5f4d",
+   "date":"2022-06-21T17:00:00.000Z",
    "duration":"60",
    "service":"62e10257dba0d09a9c3129f8",
-   "cabin":"62e16e0a220fc4600e44073e",
+   "cabin":"62e17b7f188e1e7aa41ab830",
    "price":"50",
    "paid":"50",
    "status":"paid",
    "closed":"",
-   "notes":"Lorem fistrum occaecat aliqua de la pradera aute por la gloria de mi madre. Incididunt velit minim labore te va a hasé pupitaa. Cillum dolore te voy a borrar el cerito adipisicing elit eiusmod diodenoo pupita a wan benemeritaar. A gramenawer tiene musho peligro fistro sit amet dolore velit veniam. Pupita ese pedazo de eiusmod sit amet. Ut no puedor sit amet a peich torpedo te voy a borrar el cerito occaecat a wan. Aute diodeno a wan adipisicing apetecan a gramenawer quietooor aliquip voluptate.",
+   "notes":"Nuevo appo pasado",
    "attachment":[
       {
 
@@ -296,23 +296,26 @@ POST http://localhost:3001/v1/appo
 Content-Type: application/json
 
 {
-   "userId":"62dfd5e43723fc74a96b4db4",
-   "customerId":"62e24e63f4d8345e7942545c",
-   "date":"2022-08-28T10:00:00.000Z",
+   "userId":"62e0037a22eca2027e968c1c",
+   "customerId":"62dbd3fe9484f9c059bc5f4d",
+   "date":"2022-06-21T17:00:00.000Z",
    "duration":"60",
    "service":"62e10257dba0d09a9c3129f8",
-   "cabin":"62e16e0a220fc4600e44073e",
+   "cabin":"62e17b7f188e1e7aa41ab830",
    "price":"50",
    "paid":"0",
    "status":"pending",
    "closed":"",
-   "notes":"",
+   "notes":"Nuevo appo",
    "attachment":[
       {
 
       }
    ]
 }
+
+### Move an appointment to history
+DELETE http://localhost:3001/v1/appo/close?_id=62e2490937d436a5589543d1
 
 ### Get history by userid and customerid
 GET http://localhost:3001/v1/history

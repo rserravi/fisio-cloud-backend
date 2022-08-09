@@ -89,6 +89,7 @@ All the customer API router follows '/v1/appo/'
 | 2     | '/v1/appo/'                      | GET    | DONE     |Yes         | Get Appointment by custoId and appoId                   |
 | 3     | '/v1/appo/'                      | PUT    | DONE     |Yes         | Update Appointment by custoId,appoId or _id                |
 | 4     | '/v1/appo/'                      | DELETE | DONE     |Yes         | Delete Appointment by custoId and histoId                   |
+| 4     | '/v1/appo/close/?_id={_id}'      | DELETE | DONE     |Yes         | Move from appointments to history                  |
 
 
 ### Communication API resources

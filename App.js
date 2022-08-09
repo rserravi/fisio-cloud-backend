@@ -39,8 +39,8 @@ if (process.env.MODE_ENV !== "production"){
 
 // SET BODY PARSER
  
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({ limit: '10mb' }));
  
 
 //Load Routers

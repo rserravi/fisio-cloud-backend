@@ -240,7 +240,7 @@ router.delete("/:_id", userAuthorization, async (req,res)=>{
         const {_id} = req.params;
         const result = await deleteCustomer({_id});
         //console.log(result);
-        return res.json({status:"success", message:"ticket deleted"});
+        return res.json({status:"success", message:"customer deleted"});
   
     } catch (error) {
         res.json({status:"error", message:error.message});

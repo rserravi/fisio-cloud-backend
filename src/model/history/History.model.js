@@ -34,7 +34,7 @@ const getHistory = (_id, userId, customerId) =>{
     }
     return new Promise((resolve,reject)=>{
         try{
-            HistorySchema.find(filter, async (error, data)=>{
+            HistorySchema.find(filter, null, {sort:{date:1}}, async(error, data)=>{
             var result = []
             if(error){
                 console.log("ERROR EN HYSTORYSCHEMA FIND",error)

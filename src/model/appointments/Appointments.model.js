@@ -36,7 +36,7 @@ const getAppointment = (_id, userId, customerId) =>{
     return new Promise((resolve,reject)=>{
         var result = []
         try{
-            AppoSchema.find(filter, async(error, data)=>{
+            AppoSchema.find(filter, null, {sort:{date:1}}, async(error, data)=>{
             if(error){
                 console.log(error)
                 reject(error);
@@ -46,6 +46,7 @@ const getAppointment = (_id, userId, customerId) =>{
                     var item = {}
                     item["rowid"]=key;
                     item["_id"]= data[key]._id;
+                    item["userId"]=data[key].userId;
                     item["customerId"]=data[key].customerId;
                     item["customerName"]=await getCustomerNameById(data[key].customerId)
                     item["date"]=data[key].date;
