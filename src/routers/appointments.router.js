@@ -1,5 +1,5 @@
 const express = require("express");
-const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate } = require("../model/appointments/Appointments.model");
+const { insertAppointment, getAppointment, updateAppointment, deleteAppointment, getAppointmentByDate, updateAppointmentData, updateAppointmentPaid } = require("../model/appointments/Appointments.model");
 const { insertHistory } = require("../model/history/History.model");
 
 const router = express.Router();
@@ -60,6 +60,28 @@ router.put("/", async (req, res)=>{
     const frmData = req.body;
     try {
         const result = await updateAppointment(frmData.body);
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+})
+
+router.put("/date", async (req, res)=>{
+    const {appoId, newDate} = req.body;
+    try {
+        const result = await updateAppointmentData(appoId, newDate);
+        return res.json({status:"success", result});
+  
+    } catch (error) {
+        res.json({status:"error", message:error.message});
+    }  
+})
+
+router.put("/paid", async (req, res)=>{
+    const {appoId, amountPaid} = req.body;
+    try {
+        const result = await updateAppointmentPaid(appoId, amountPaid);
         return res.json({status:"success", result});
   
     } catch (error) {

@@ -76,23 +76,26 @@ const getHistory = (_id, userId, customerId) =>{
 }
 
 const updateHistory = (frmData) =>{
-    const _id= frmData._id;
+    const _id= frmData.body._id;
     
     return new Promise((resolve,reject)=>{
+        console.log("Datos en UPDATE HISTORY",frmData.body)
         try {
             HistorySchema.findOneAndUpdate(
-                {_id},
-                {$set: frmData},
+                {_id: _id},
+                {$set: frmData.body},
                 {new: true}, 
                 (error, data) =>{
                     if(error){
+                        console.log("ERROR EN FINDONEANDUPDATE", error)
                         reject(error);
                     }
                     resolve(data);
-                    //console.log(data);
+                    console.log(data);
                     }
             ).clone();
         } catch (error) {
+            console.log("ERROR EN UPDATE HISTORY PROMISE", error)
             reject(error);       
         }
     });

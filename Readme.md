@@ -54,10 +54,10 @@ All the customer API router follows '/v1/lang/'
  
 | #     | Routers                             | Verbs | Progress | Is Private | Description                                       |
 | ----- | ----------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
-| 1     | '/v1/history/'                      | POST   | DONE     |Yes         | Create an history for user                              |
+| 1     | '/v1/history/'                      | POST   | DONE     |Yes         | Create an history for customer                              |
 | 2     | '/v1/history/'                      | GET    | DONE     |Yes         | Get History by custoId and histoId                   |
-| 3     | '/v1/history/'                      | PUT    | DONE     |Yes         | Update History by custoId,histoId or _id                |
-| 4     | '/v1/history/'                      | DELETE | DONE     |Yes         | Delete History by custoId and histoId                   |
+| 3     | '/v1/history/'                      | PUT    | DONE     |Yes         | Update History (form in body)               |
+| 4     | '/v1/history/'                      | DELETE | DONE     |Yes         | Delete History by histoId                   |
 | 5     | '/v1/history/deposits'              | GET    | DONE     |Yes         | Get deposits from histories of a custoId          |
 | 6     | '/v1/history/cabins'                | GET    | DONE     |Yes         | Get cabins from a cabin id                        |
 
@@ -88,8 +88,10 @@ All the customer API router follows '/v1/appo/'
 | 1     | '/v1/appo/'                      | POST   | DONE     |Yes         | Create an appointment for user                              |
 | 2     | '/v1/appo/'                      | GET    | DONE     |Yes         | Get Appointment by custoId and appoId                   |
 | 3     | '/v1/appo/'                      | PUT    | DONE     |Yes         | Update Appointment by custoId,appoId or _id                |
-| 4     | '/v1/appo/'                      | DELETE | DONE     |Yes         | Delete Appointment by custoId and histoId                   |
-| 4     | '/v1/appo/close/?_id={_id}'      | DELETE | DONE     |Yes         | Move from appointments to history                  |
+| 4     | '/v1/appo/date'                  | PUT    | DONE     |Yes         | Update Appointment Date by appoId                 |
+| 5     | '/v1/appo/paid'                  | PUT    | DONE     |Yes         | Update Appointment Paid  by appoId                |
+| 6     | '/v1/appo/'                      | DELETE | DONE     |Yes         | Delete Appointment by custoId and histoId                   |
+| 7     | '/v1/appo/close/?_id={_id}'      | DELETE | DONE     |Yes         | Move from appointments to history                  |
 
 
 ### Communication API resources

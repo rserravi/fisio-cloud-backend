@@ -101,6 +101,52 @@ const updateAppointment = (frmData) =>{
     });
 }
 
+const updateAppointmentData = (id, date) =>{
+    const _id= id;
+    console.log("UPDATEAPPOINTMENT", id, date)
+    return new Promise((resolve,reject)=>{
+        try {
+            AppoSchema.findOneAndUpdate(
+                {_id: _id},
+                {$set: {date: new Date(date)}},
+                {new: true}, 
+                (error, data) =>{
+                    if(error){
+                        reject(error);
+                    }
+                    resolve(data);
+                    console.log(data);
+                    }
+            ).clone();
+        } catch (error) {
+            reject(error);       
+        }
+    });
+}
+
+const updateAppointmentPaid = (appoId, amountPaid) =>{
+    const _id= appoId;
+    console.log("UPDATEAPPOINTMENT", appoId, amountPaid)
+    return new Promise((resolve,reject)=>{
+        try {
+            AppoSchema.findOneAndUpdate(
+                {_id: _id},
+                {$set: {paid: Number(amountPaid)}},
+                {new: true}, 
+                (error, data) =>{
+                    if(error){
+                        reject(error);
+                    }
+                    resolve(data);
+                    console.log(data);
+                    }
+            ).clone();
+        } catch (error) {
+            reject(error);       
+        }
+    });
+}
+
 const deleteAppointment = (_id) =>{
     console.log("ID EN DELETEAPPO",_id)
     return new Promise((resolve,reject)=>{
@@ -189,6 +235,8 @@ module.exports = {
     insertAppointment,
     getAppointment,
     updateAppointment,
+    updateAppointmentData,
+    updateAppointmentPaid,
     deleteAppointment,
     getAppointmentByDate,
     GetCabinFromAppointment
