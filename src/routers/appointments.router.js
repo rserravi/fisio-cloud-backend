@@ -70,7 +70,7 @@ router.put("/", async (req, res)=>{
 router.put("/date", async (req, res)=>{
     const {appoId, newDate} = req.body;
     try {
-        const result = await updateAppointmentData(appoId, newDate);
+        const result = await updateAppointmentData(appoId, newDateº);
         return res.json({status:"success", result});
   
     } catch (error) {

@@ -57,6 +57,7 @@ const alertSetupRouter = require("./src/routers/setupAlerts.router")
 const getcalendar = require("./src/routers/calendar.router")
 const reportsRouter = require("./src/routers/reports.router")
 const depositsRourter = require("./src/routers/deposits.router")
+const blueprintRouter = require("./src/routers/blueprint.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
@@ -71,8 +72,9 @@ app.use("/v1/appo", appointmentsRouter);
 app.use("/v1/comm", communicationsRouter);
 app.use("/v1/setupalerts", alertSetupRouter);
 app.use("/v1/calendar", getcalendar);
-app.use("/v1/reports", reportsRouter)
-app.use("/v1/deposits", depositsRourter)
+app.use("/v1/reports", reportsRouter);
+app.use("/v1/deposits", depositsRourter);
+app.use("/v1/blueprint", blueprintRouter);
 
 
 //Error handler

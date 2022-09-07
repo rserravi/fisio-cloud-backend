@@ -388,3 +388,34 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ1Ym90aWMxQGdt
 
 ### Get Deposits from Date
 GET http://localhost:3001/v1/deposits?from=2000-01-01&end=2022-08-10&userId=62e0037a22eca2027e968c1c
+
+### Create a consent form
+POST http://localhost:3001/v1/consent
+Content-Type: application/json
+
+{
+   "userId":"62e0037a22eca2027e968c1c",
+   "customerId":"62e24e63f4d8345e7942545c",
+   "blueprint": "1",
+   "locale": "ca-CA"
+
+}
+
+### Create a blueprint form
+POST http://localhost:3001/v1/blueprint
+Content-Type: application/json
+
+{
+   "userId":"62e0037a22eca2027e968c1c",
+   "customerId":"62e24e63f4d8345e7942545c",
+   "locale": "ca-CA",
+   "cabecera": "<h1>CONSENTIMIENTO INFORMADO</h1>"
+
+}
+
+### Get list of blueprints
+GET  http://localhost:3001/v1/blueprint
+
+### Get list of blueprints
+GET  http://localhost:3001/v1/blueprint?filename=osteopatia-consent-es-ES.html
+
