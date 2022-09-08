@@ -396,26 +396,14 @@ Content-Type: application/json
 {
    "userId":"62e0037a22eca2027e968c1c",
    "customerId":"62e24e63f4d8345e7942545c",
-   "blueprint": "1",
-   "locale": "ca-CA"
-
+   "blueprint": "osteopatia-consent-ca-CA.html"
 }
 
-### Create a blueprint form
-POST http://localhost:3001/v1/blueprint
-Content-Type: application/json
-
-{
-   "userId":"62e0037a22eca2027e968c1c",
-   "customerId":"62e24e63f4d8345e7942545c",
-   "locale": "ca-CA",
-   "cabecera": "<h1>CONSENTIMIENTO INFORMADO</h1>"
-
-}
+### Get a consent form
+GET http://localhost:3001/v1/consent/?customerId=62e24e63f4d8345e7942545c
 
 ### Get list of blueprints
 GET  http://localhost:3001/v1/blueprint
 
 ### Get list of blueprints
 GET  http://localhost:3001/v1/blueprint?filename=osteopatia-consent-es-ES.html
-

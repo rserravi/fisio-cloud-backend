@@ -58,6 +58,7 @@ const getcalendar = require("./src/routers/calendar.router")
 const reportsRouter = require("./src/routers/reports.router")
 const depositsRourter = require("./src/routers/deposits.router")
 const blueprintRouter = require("./src/routers/blueprint.router")
+const consentRouter = require("./src/routers/consent.router")
 
 //USE ROUTERS
 app.use("/v1/user", userRouter); 
@@ -75,6 +76,7 @@ app.use("/v1/calendar", getcalendar);
 app.use("/v1/reports", reportsRouter);
 app.use("/v1/deposits", depositsRourter);
 app.use("/v1/blueprint", blueprintRouter);
+app.use("/v1/consent", consentRouter)
 
 
 //Error handler

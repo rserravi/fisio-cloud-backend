@@ -15,6 +15,7 @@ router.post("/", (req, res)=>{
     res.json({message: "return from Blueprint router POST"});
 })
 
+
 router.get("/", (req, res)=>{
     const _filename = dir + "/"+ req.query.filename;
     var http = require('http');

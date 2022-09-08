@@ -168,11 +168,10 @@ All the consent API router follows '/v1/consent/'
  
 | #     | Routers                          | Verbs | Progress | Is Private | Description                                       |
 | ----- | -------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
-| 1     | '/v1/consent/'                    | POST   | TODO     |Yes         | C - Create a consent                                     |
-| 2     | '/v1/consent/'                    | GET    | TODO     |Yes         | R - Get consent list .                 |
-| 3     | '/v1/consent/?_id={_id}'          | GET    | TODO     |Yes         | R - Get consent blueprint by _id                |
-| 4     | '/v1/consent/'                    | PUT    | TODO     |Yes         | U - Update consent by _id                |
-| 5     | '/v1/consent/'                    | DELETE | TODO     |Yes         | D - Delete consent by _id                   |
+| 1     | '/v1/consent/'                   | POST   | DONE     |Yes         | C - Create a consent by _customerId                   |                |
+| 3     | '/v1/consent/?_customerId={_customerId}'| GET    | DONE     |Yes         | R - Get consent blueprint by _customerId        |
+| 4     | '/v1/consent/?_customerId={_customerId}'| PUT    | TODO     |Yes         | U - Update consent by _id                |
+| 5     | '/v1/consent/?_customerId={_customerId}' | DELETE | TODO     |Yes         | D - Delete consent by _id                   |
 
 ### Blueprint API resources
 All the blueprint API router follows '/v1/blueprint/'
@@ -182,6 +181,6 @@ All the blueprint API router follows '/v1/blueprint/'
 | ----- | -------------------------------- | ------ | -------- | ---------- | ------------------------------------------------ |
 | 1     | '/v1/blueprint/'                    | POST   | TODO     |Yes         | C - Create a blueprint                                     |
 | 2     | '/v1/blueprint/'                    | GET    | DONE     |Yes         | R - Get blueprint list .                 |
-| 3     | '/v1/blueprint/?filename={_filename}' | GET    | TODO     |Yes         | R - Get consent blueprint by name                |
-| 4     | '/v1/blueprint/?filename={_filename}' | PATCH  | TODO     |Yes         | U - Update blueprint by _filename                |
+| 3     | '/v1/blueprint/?filename={_filename}' | GET    | DONE     |Yes         | R - Get consent blueprint by name                |
+| 4     | '/v1/blueprint/?filename={_filename}' | PATCH  | DONE     |Yes         | U - Update blueprint by _filename                |
 | 5     | '/v1/blueprint/'                    | DELETE | TODO     |Yes         | D - Delete consent by _id                   |

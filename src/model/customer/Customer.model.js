@@ -316,6 +316,34 @@ const updateCustomer = (customerId, frmData) =>{
     });
 };
 
+const updateConsent = (customerId, frmData) =>{
+    const releaseFrm = {
+        file: frmData,
+        generated: true,
+        signed: false
+    }
+    return new Promise((resolve,reject)=>{
+        if((!customerId)) return false;
+        try{
+            CustomerSchema.findOneAndUpdate(
+                {_id: customerId},
+                {releaseForm:releaseFrm},
+                {new: true}, 
+                (error, data)=>{
+                    if(error){
+                        console.log("ERROR EN UPDATECONSENT", error)
+                        reject(error);
+                    }
+                    resolve(data);
+                    }
+        ).clone();
+        } catch (error) {
+            console.log("ERROR EN UPDATECONSENT", error)
+            reject(error);
+        }
+    });
+}
+
 
 module.exports = {
     insertCustomer,
@@ -331,5 +359,6 @@ module.exports = {
     getCustomerMail,
     getCustomerWhatsapp,
     GetLeadsAndCustomersForChart,
-    updateCustomer
+    updateCustomer,
+    updateConsent
  }

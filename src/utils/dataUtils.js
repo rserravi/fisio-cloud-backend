@@ -1,6 +1,5 @@
 const moment = require("moment");
 
-
 const GetArrayOfMonthAndYear = (monthandyear, data) =>{
     let found = {}
     try {
@@ -17,6 +16,7 @@ const GetArrayOfMonthAndYear = (monthandyear, data) =>{
     
     }
 
+
 const fillData = (data, locale)=>{
     var jsonObj = []
     const firstDay = Object.values(data)[0][0].date;
@@ -31,5 +31,6 @@ const fillData = (data, locale)=>{
     }
     return jsonObj;
   }
+
 
   module.exports = fillData;
